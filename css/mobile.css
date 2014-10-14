@@ -1,0 +1,185 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../.rvm/gems/ruby-2.0.0-p451/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 14, ../sass/global.scss */
+html, body {
+  height: 100%;
+  font-size: 16px;
+}
+
+/* line 19, ../sass/global.scss */
+section {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  overflow: auto;
+}
+/* line 25, ../sass/global.scss */
+section > h1 {
+  font-family: "adelle", serif;
+  font-weight: 700;
+  font-size: 4.2rem;
+  text-align: center;
+  line-height: 6.4rem;
+  padding-top: 2rem;
+}
+/* line 34, ../sass/global.scss */
+section em {
+  font-style: normal;
+  color: #ffffff;
+  position: absolute;
+}
+/* line 40, ../sass/global.scss */
+section > h2 {
+  font-family: "museo-sans", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
+/* line 48, ../sass/global.scss */
+section main {
+  width: 70%;
+  min-width: 500px;
+  max-width: 50rem;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 50px;
+}
+/* line 56, ../sass/global.scss */
+section main p {
+  font-family: "adobe-caslon-pro", serif;
+  font-size: 1rem;
+  line-height: 1.8rem;
+  margin: 2rem 0;
+}
+
+/* line 65, ../sass/global.scss */
+section#home {
+  background-color: #ececec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* line 71, ../sass/global.scss */
+section#home h1 {
+  padding-top: 0;
+  color: #afafaf;
+  text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
+  text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
+}
+/* line 77, ../sass/global.scss */
+section#home h2 {
+  color: #5b5b5b;
+}
+
+/* line 82, ../sass/global.scss */
+section#about {
+  background-color: #516eec;
+}
+/* line 84, ../sass/global.scss */
+section#about h1 {
+  color: #3c51b0;
+  text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
+  text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
+}
+
+/* line 90, ../sass/global.scss */
+section#blog {
+  background-color: #ec5151;
+}
+/* line 92, ../sass/global.scss */
+section#blog h1 {
+  color: #b03c3c;
+  text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
+  text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
+}
+
+/* line 98, ../sass/global.scss */
+section#contact {
+  background-color: #4eae61;
+}
+/* line 100, ../sass/global.scss */
+section#contact h1 {
+  color: #3c864b;
+  text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
+  text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
+}
+
+/* line 106, ../sass/global.scss */
+section#notfound {
+  background-color: #393939;
+}
+/* line 108, ../sass/global.scss */
+section#notfound h1 {
+  color: #272727;
+  text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
+  text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
+}

@@ -1,0 +1,38 @@
+
+$white:              #ffffff;
+
+$fnet-white:         #ececec;
+$fnet-blue:          #516eec;
+$fnet-red:           #ec5151;
+$fnet-green:         #4eae61;
+$fnet-charcoal:      #393939;
+
+$fnet-white-alt:     #afafaf;
+$fnet-blue-alt:      #3c51b0;
+$fnet-red-alt:       #b03c3c;
+$fnet-green-alt:     #3c864b;
+$fnet-charcoal-alt:  #272727;
+
+$lighten-amount: 40%;
+$darken-amount:  60%;
+
+$fnet-white-alt-dark: shade($fnet-white-alt, $darken-amount);
+$fnet-white-alt-light: tint($fnet-white-alt, $lighten-amount);
+
+$fnet-blue-alt-dark:  shade($fnet-blue-alt, $darken-amount);
+$fnet-blue-alt-light:  tint($fnet-blue-alt, $lighten-amount);
+
+$fnet-red-alt-dark: shade($fnet-red-alt, $darken-amount);
+$fnet-red-alt-light: tint($fnet-red-alt, $lighten-amount);
+
+$fnet-green-alt-dark: shade($fnet-green-alt, $darken-amount);
+$fnet-green-alt-light: tint($fnet-green-alt, $lighten-amount);
+
+$fnet-charcoal-alt-dark: shade($fnet-charcoal-alt, $darken-amount);
+$fnet-charcoal-alt-light: tint($fnet-charcoal-alt, $lighten-amount - 20%);
+
+$fnet-splash-gray: #5b5b5b;
+
+$fnet-devicewidth-small: 500px;
+$fnet-devicewidth-medium: 1200px;
+$fnet-devicewidth-large:  1900px;

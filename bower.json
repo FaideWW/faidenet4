@@ -1,0 +1,23 @@
+{
+  "name": "faidenet4",
+  "version": "4.0.0",
+  "authors": [
+    "faide <michael@faide.net>"
+  ],
+  "description": "faide.net",
+  "main": "index.html",
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.4.2"
+  }
+}
