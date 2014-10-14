@@ -104,9 +104,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     min-height: 100%;
     position: relative;
     overflow: auto;
+    border-top: 5px solid #000;
   }
-  /* line 60, ../sass/global.scss */
-  section main {
+  /* line 61, ../sass/global.scss */
+  section article {
     width: 70%;
     min-width: 500px;
     max-width: 50rem;
@@ -114,17 +115,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     background-color: #ffffff;
     padding: 50px;
   }
-  /* line 68, ../sass/global.scss */
-  section main header {
+  /* line 71, ../sass/global.scss */
+  section article header {
     text-align: center;
   }
-  /* line 71, ../sass/global.scss */
-  section main header img {
+  /* line 74, ../sass/global.scss */
+  section article header img {
     vertical-align: middle;
     border-radius: 75px;
   }
-  /* line 75, ../sass/global.scss */
-  section main header h3 {
+  /* line 78, ../sass/global.scss */
+  section article header h1 {
+    margin: 0 2rem;
+    font-family: "adelle", serif;
+    font-weight: 700;
+    font-size: 3.5rem;
+    line-height: 2.5rem;
+  }
+  /* line 85, ../sass/global.scss */
+  section article header h3 {
     margin: 0 2rem;
     display: inline-block;
     font-family: "adelle", serif;
@@ -132,65 +141,74 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     font-size: 1.4rem;
     line-height: 2.5rem;
   }
-  /* line 82, ../sass/global.scss */
-  section main header h3 strong {
+  /* line 92, ../sass/global.scss */
+  section article header h3 strong {
     font-weight: 700;
   }
-  /* line 88, ../sass/global.scss */
-  section main p {
+  /* line 98, ../sass/global.scss */
+  section article p {
     font-family: "adobe-caslon-pro", serif;
     font-size: 1.1rem;
     line-height: 2.2rem;
     margin: 2rem 0;
   }
 
-  /* line 98, ../sass/global.scss */
+  /* line 108, ../sass/global.scss */
   section#home {
     background-color: #ececec;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: none;
   }
-  /* line 104, ../sass/global.scss */
-  section#home h1 {
+  /* line 115, ../sass/global.scss */
+  section#home > h1 {
     padding-top: 0;
     color: #afafaf;
     text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
     text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
   }
-  /* line 110, ../sass/global.scss */
-  section#home h2 {
+  /* line 121, ../sass/global.scss */
+  section#home > h2 {
     color: #5b5b5b;
   }
 
-  /* line 115, ../sass/global.scss */
+  /* line 127, ../sass/global.scss */
   section#about {
     background-color: #516eec;
+    border-color: #3c51b0;
   }
-  /* line 117, ../sass/global.scss */
-  section#about h1 {
+  /* line 129, ../sass/global.scss */
+  section#about > h1 {
     color: #3c51b0;
     text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
     text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
   }
-  /* line 122, ../sass/global.scss */
-  section#about main > header {
+  /* line 138, ../sass/global.scss */
+  section#about article > header {
     color: #3c51b0;
   }
 
-  /* line 127, ../sass/global.scss */
+  /* line 144, ../sass/global.scss */
   section#blog {
     background-color: #ec5151;
+    color: #393939;
+    /* LIST BLOG POSTS */
+    border-color: #b03c3c;
+    /* DISPLAY SINGLE POST */
   }
-  /* line 129, ../sass/global.scss */
+  /* line 146, ../sass/global.scss */
   section#blog h1 {
     color: #b03c3c;
+  }
+  /* line 153, ../sass/global.scss */
+  section#blog > h1 {
     text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
     text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
   }
-  /* line 134, ../sass/global.scss */
-  section#blog section {
+  /* line 158, ../sass/global.scss */
+  section#blog > section {
     overflow-x: auto;
     width: 100%;
     height: 100%;
@@ -201,16 +219,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     flex-direction: row;
     align-items: stretch;
   }
-  /* line 146, ../sass/global.scss */
-  section#blog section article {
+  /* line 170, ../sass/global.scss */
+  section#blog > section > article {
     width: 25%;
     min-width: 20rem;
     box-sizing: border-box;
     padding: 0px 1.5rem;
     position: relative;
   }
-  /* line 153, ../sass/global.scss */
-  section#blog section article time {
+  /* line 177, ../sass/global.scss */
+  section#blog > section > article time {
     display: block;
     text-align: center;
     font-family: "clavo", serif;
@@ -218,8 +236,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     font-weight: 300;
     margin-bottom: 1.5rem;
   }
-  /* line 162, ../sass/global.scss */
-  section#blog section article h3 {
+  /* line 186, ../sass/global.scss */
+  section#blog > section > article h3 {
     text-align: center;
     font-family: "adelle", serif;
     font-weight: 700;
@@ -227,16 +245,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     color: #ffffff;
     margin-bottom: 1.5rem;
   }
-  /* line 171, ../sass/global.scss */
-  section#blog section article blockquote {
+  /* line 195, ../sass/global.scss */
+  section#blog > section > article blockquote {
     font-family: "adobe-caslon-pro", serif;
     font-weight: 300;
     font-size: 1.0rem;
     line-height: 1.8rem;
     color: #ffffff;
   }
-  /* line 180, ../sass/global.scss */
-  section#blog section article a {
+  /* line 204, ../sass/global.scss */
+  section#blog > section > article a {
     width: 100%;
     font-family: "adobe-caslon-pro", serif;
     font-weight: 300;
@@ -250,33 +268,63 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     left: 50%;
     margin-left: -50%;
   }
-  /* line 196, ../sass/global.scss */
-  section#blog section article a:hover {
+  /* line 220, ../sass/global.scss */
+  section#blog > section > article a:hover {
     text-decoration: underline;
   }
+  /* line 232, ../sass/global.scss */
+  section#blog > article header time {
+    float: right;
+    display: inline-block;
+    font-family: "clavo", serif;
+    color: #b03c3c;
+    font-weight: 300;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  /* line 241, ../sass/global.scss */
+  section#blog > article header p {
+    float: left;
+    display: inline-block;
+    font-family: "clavo", serif;
+    color: #b03c3c;
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0;
+  }
+  /* line 250, ../sass/global.scss */
+  section#blog > article header h1 {
+    clear: both;
+    padding: 3rem 0;
+  }
+  /* line 255, ../sass/global.scss */
+  section#blog > article section {
+    border: none;
+  }
 
-  /* line 205, ../sass/global.scss */
+  /* line 262, ../sass/global.scss */
   section#contact {
     background-color: #4eae61;
+    border-color: #3c864b;
   }
-  /* line 207, ../sass/global.scss */
-  section#contact h1 {
+  /* line 264, ../sass/global.scss */
+  section#contact > h1 {
     color: #3c864b;
     text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
     text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
   }
-  /* line 212, ../sass/global.scss */
-  section#contact main > header {
+  /* line 273, ../sass/global.scss */
+  section#contact article > header {
     color: #3c864b;
   }
-  /* line 216, ../sass/global.scss */
+  /* line 278, ../sass/global.scss */
   section#contact nav {
     margin: 2rem 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
-  /* line 222, ../sass/global.scss */
+  /* line 284, ../sass/global.scss */
   section#contact nav a {
     display: block;
     width: 100px;
@@ -291,24 +339,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     font-size: 1.2rem;
     text-decoration: none;
   }
-  /* line 237, ../sass/global.scss */
+  /* line 299, ../sass/global.scss */
   section#contact nav a:hover {
     background-color: #3c864b;
     color: #ffffff;
   }
 
-  /* line 246, ../sass/global.scss */
+  /* line 308, ../sass/global.scss */
   section#notfound, footer {
     background-color: #393939;
+    border-color: #272727;
   }
-  /* line 248, ../sass/global.scss */
-  section#notfound h1, footer h1 {
+  /* line 311, ../sass/global.scss */
+  section#notfound > h1, footer > h1 {
     color: #272727;
     text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
     text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
   }
 
-  /* line 254, ../sass/global.scss */
+  /* line 317, ../sass/global.scss */
   footer {
     padding: 2rem 0;
   }

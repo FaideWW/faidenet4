@@ -56,8 +56,11 @@
     position: relative;
     overflow: auto;
 
+    border-top: 5px solid #000;
 
-    main {
+    article {
+//      border-bottom: 5px solid #000;
+
       width: 70%;
       min-width: 500px;
       max-width: 50rem;
@@ -71,6 +74,13 @@
         img {
           vertical-align: middle;
           border-radius: 75px;
+        }
+        h1 {
+          margin: 0 2rem;
+          font-family: "adelle", serif;
+          font-weight: 700;
+          font-size: 3.5rem;
+          line-height: 2.5rem;
         }
         h3 {
           margin: 0 2rem;
@@ -101,26 +111,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    h1 {
+    border: none;
+    &>h1 {
       padding-top: 0;
       color: $fnet-white-alt;
       @include inset-shadow($fnet-white-alt-dark, $fnet-white-alt-light);
     }
 
-    h2 {
+    &>h2 {
       color: $fnet-splash-gray;
     }
+
   }
 
   section#about {
     background-color: $fnet-blue;
-    h1 {
+    &>h1 {
       color: $fnet-blue-alt;
       @include inset-shadow($fnet-blue-alt-dark, $fnet-blue-alt-light);
     }
+    border-color: $fnet-blue-alt;
 
-    main>header {
-      color: $fnet-blue-alt;
+    article {
+
+
+      &>header {
+        color: $fnet-blue-alt;
+      }
     }
   }
 
@@ -128,10 +145,17 @@
     background-color: $fnet-red;
     h1 {
       color: $fnet-red-alt;
+
+    }
+
+    color: $fnet-charcoal;
+
+    &>h1 {
       @include inset-shadow($fnet-red-alt-dark, $fnet-red-alt-light);
     }
 
-    section {
+    /* LIST BLOG POSTS */
+    &>section {
       overflow-x: auto;
       width: 100%;
       height: 100%;
@@ -143,7 +167,7 @@
       align-items: stretch;
 
 
-      article {
+      &>article {
         width: 25%;
         min-width: 20rem;
         box-sizing: border-box;
@@ -200,17 +224,55 @@
       }
     }
 
+    border-color: $fnet-red-alt;
+    /* DISPLAY SINGLE POST */
+    &>article {
+
+      header {
+        time {
+          float: right;
+          display: inline-block;
+          font-family: "clavo", serif;
+          color: $fnet-red-alt;
+          font-weight: 300;
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+        p {
+          float: left;
+          display: inline-block;
+          font-family: "clavo", serif;
+          color: $fnet-red-alt;
+          font-weight: 300;
+          font-size: 1rem;
+          margin: 0;
+        }
+        h1 {
+          clear: both;
+          padding: 3rem 0;
+        }
+      }
+      section {
+        border: none;
+      }
+    }
+
   }
 
   section#contact {
     background-color: $fnet-green;
-    h1 {
+    &>h1 {
       color: $fnet-green-alt;
       @include inset-shadow($fnet-green-alt-dark, $fnet-green-alt-light);
     }
 
-    main>header {
-      color: $fnet-green-alt;
+    border-color: $fnet-green-alt;
+
+    article {
+
+      &>header {
+        color: $fnet-green-alt;
+      }
     }
 
     nav {
@@ -245,7 +307,7 @@
 
   section#notfound, footer {
     background-color: $fnet-charcoal;
-    h1 {
+    &>h1 {
       color: $fnet-charcoal-alt;
       @include inset-shadow($fnet-charcoal-alt-dark, $fnet-charcoal-alt-light);
     }
