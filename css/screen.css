@@ -67,885 +67,438 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-@media (min-width: 800px) {
-  /* line 24, ../sass/global.scss */
-  html, body {
-    height: 100%;
-    font-size: 16px;
-  }
-  /* line 27, ../sass/global.scss */
-  html > section, body > section {
-    border-top: 5px solid #000;
-  }
-
-  /* line 33, ../sass/global.scss */
-  section > h1, footer > h1 {
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 4.2rem;
-    text-align: center;
-    line-height: 6.4rem;
-    padding-top: 2rem;
-  }
-  /* line 42, ../sass/global.scss */
-  section em, footer em {
-    font-style: normal;
-    color: #ffffff;
-    position: absolute;
-  }
-  /* line 48, ../sass/global.scss */
-  section > h2, footer > h2 {
-    font-family: "museo-sans", sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ffffff;
-    text-align: center;
-  }
-
-  /* line 57, ../sass/global.scss */
-  section {
-    width: 100%;
-    min-height: 100%;
-    position: relative;
-    overflow: auto;
-  }
-  /* line 63, ../sass/global.scss */
-  section > article {
-    width: 70%;
-    min-width: 500px;
-    max-width: 50rem;
-    margin: 100px auto;
-    background-color: #ffffff;
-    padding: 50px;
-    color: #393939;
-  }
-  /* line 75, ../sass/global.scss */
-  section > article header {
-    text-align: center;
-  }
-  /* line 78, ../sass/global.scss */
-  section > article header img {
-    vertical-align: middle;
-    border-radius: 75px;
-  }
-  /* line 82, ../sass/global.scss */
-  section > article header h1 {
-    margin: 0 2rem;
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 3.5rem;
-    line-height: 2.5rem;
-  }
-  /* line 89, ../sass/global.scss */
-  section > article header h3 {
-    margin: 0 2rem;
-    display: inline-block;
-    font-family: "adelle", serif;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 2.5rem;
-  }
-  /* line 96, ../sass/global.scss */
-  section > article header h3 strong {
-    font-weight: 700;
-  }
-  /* line 102, ../sass/global.scss */
-  section > article p {
-    font-family: "adobe-caslon-pro", serif;
-    font-size: 1.1rem;
-    line-height: 2.2rem;
-    margin: 2rem 0;
-  }
-
-  /* line 112, ../sass/global.scss */
-  section#home {
-    background-color: #ececec;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: none;
-  }
-  /* line 119, ../sass/global.scss */
-  section#home > h1 {
-    padding-top: 0;
-    color: #afafaf;
-    text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
-    text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
-  }
-  /* line 125, ../sass/global.scss */
-  section#home > h2 {
-    color: #5b5b5b;
-  }
-
-  /* line 131, ../sass/global.scss */
-  section#about {
-    background-color: #516eec;
-    border-color: #3c51b0;
-  }
-  /* line 133, ../sass/global.scss */
-  section#about > h1 {
-    color: #3c51b0;
-    text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
-    text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
-  }
-  /* line 142, ../sass/global.scss */
-  section#about article > header {
-    color: #3c51b0;
-  }
-
-  /* line 148, ../sass/global.scss */
-  section#blog {
-    background-color: #ec5151;
-    color: #393939;
-    /* LIST BLOG POSTS */
-    border-color: #b03c3c;
-    /* DISPLAY SINGLE POST */
-  }
-  /* line 150, ../sass/global.scss */
-  section#blog h1 {
-    color: #b03c3c;
-  }
-  /* line 157, ../sass/global.scss */
-  section#blog > h1 {
-    text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
-    text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
-  }
-  /* line 162, ../sass/global.scss */
-  section#blog > nav {
-    overflow-x: auto;
-    width: 100%;
-    height: 100%;
-    min-height: 25rem;
-    margin-top: 6rem;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-  }
-  /* line 174, ../sass/global.scss */
-  section#blog > nav > article {
-    width: 25%;
-    min-width: 20rem;
-    box-sizing: border-box;
-    padding: 0px 1.5rem;
-    position: relative;
-  }
-  /* line 181, ../sass/global.scss */
-  section#blog > nav > article time {
-    display: block;
-    text-align: center;
-    font-family: "clavo", serif;
-    color: #ffffff;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-  /* line 190, ../sass/global.scss */
-  section#blog > nav > article h3 {
-    text-align: center;
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-  }
-  /* line 199, ../sass/global.scss */
-  section#blog > nav > article blockquote {
-    font-family: "adobe-caslon-pro", serif;
-    font-weight: 300;
-    font-size: 1.0rem;
-    line-height: 1.8rem;
-    color: #ffffff;
-  }
-  /* line 208, ../sass/global.scss */
-  section#blog > nav > article a {
-    width: 100%;
-    font-family: "adobe-caslon-pro", serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    font-variant: small-caps;
-    color: #ffffff;
-    text-decoration: none;
-    text-align: center;
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    margin-left: -50%;
-  }
-  /* line 224, ../sass/global.scss */
-  section#blog > nav > article a:hover {
-    text-decoration: underline;
-  }
-  /* line 236, ../sass/global.scss */
-  section#blog > article header time {
-    float: right;
-    display: inline-block;
-    font-family: "clavo", serif;
-    color: #b03c3c;
-    font-weight: 300;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  /* line 245, ../sass/global.scss */
-  section#blog > article header p {
-    float: left;
-    display: inline-block;
-    font-family: "clavo", serif;
-    color: #b03c3c;
-    font-weight: 300;
-    font-size: 1rem;
-    margin: 0;
-  }
-  /* line 254, ../sass/global.scss */
-  section#blog > article header h1 {
-    clear: both;
-    padding: 3rem 0;
-  }
-  /* line 259, ../sass/global.scss */
-  section#blog > article section {
-    border: none;
-  }
-
-  /* line 266, ../sass/global.scss */
-  section#contact {
-    background-color: #4eae61;
-    border-color: #3c864b;
-  }
-  /* line 268, ../sass/global.scss */
-  section#contact > h1 {
-    color: #3c864b;
-    text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
-    text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
-  }
-  /* line 277, ../sass/global.scss */
-  section#contact article > header {
-    color: #3c864b;
-  }
-  /* line 282, ../sass/global.scss */
-  section#contact nav {
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  /* line 288, ../sass/global.scss */
-  section#contact nav a {
-    display: block;
-    width: 100px;
-    height: 100px;
-    border-radius: 52px;
-    border: 3px solid #3c864b;
-    line-height: 95px;
-    text-align: center;
-    font-family: "museo-sans", sans-serif;
-    color: #3c864b;
-    font-weight: 300;
-    font-size: 1.2rem;
-    text-decoration: none;
-  }
-  /* line 303, ../sass/global.scss */
-  section#contact nav a:hover {
-    background-color: #3c864b;
-    color: #ffffff;
-  }
-
-  /* line 312, ../sass/global.scss */
-  section#notfound, footer {
-    background-color: #393939;
-  }
-  /* line 314, ../sass/global.scss */
-  section#notfound > h1, footer > h1 {
-    color: #272727;
-    text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
-    text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
-  }
-
-  /* line 320, ../sass/global.scss */
-  footer {
-    padding: 2rem 0;
-  }
+/* line 21, ../sass/global.scss */
+html, body {
+  height: 100%;
+  font-size: 16px;
 }
+/* line 24, ../sass/global.scss */
+html > section, body > section {
+  border-top: 5px solid #000;
+}
+
+/* line 31, ../sass/global.scss */
+section > header > h1 {
+  font-family: "adelle", serif;
+  font-weight: 700;
+  font-size: 4.2rem;
+  text-align: center;
+  line-height: 6.4rem;
+  padding-top: 2rem;
+}
+/* line 40, ../sass/global.scss */
+section > header > h2 {
+  font-family: "museo-sans", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
+/* line 47, ../sass/global.scss */
+section > header em {
+  font-style: normal;
+  color: #ffffff;
+  position: absolute;
+}
+
+/* line 56, ../sass/global.scss */
+footer > h1 {
+  font-family: "adelle", serif;
+  font-weight: 700;
+  font-size: 4.2rem;
+  text-align: center;
+  line-height: 6.4rem;
+  padding-top: 2rem;
+}
+/* line 65, ../sass/global.scss */
+footer > h2 {
+  font-family: "museo-sans", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
+/* line 72, ../sass/global.scss */
+footer em {
+  font-style: normal;
+  color: #ffffff;
+  position: absolute;
+}
+
+/* line 80, ../sass/global.scss */
+section {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  overflow: auto;
+}
+/* line 86, ../sass/global.scss */
+section > article {
+  width: 70%;
+  min-width: 500px;
+  max-width: 50rem;
+  margin: 100px auto;
+  background-color: #ffffff;
+  padding: 50px;
+  color: #393939;
+}
+/* line 98, ../sass/global.scss */
+section > article header {
+  text-align: center;
+}
+/* line 101, ../sass/global.scss */
+section > article header img {
+  vertical-align: middle;
+  border-radius: 75px;
+}
+/* line 105, ../sass/global.scss */
+section > article header h1 {
+  margin: 0 2rem;
+  font-family: "adelle", serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 2.5rem;
+}
+/* line 112, ../sass/global.scss */
+section > article header h3 {
+  margin: 0 2rem;
+  display: inline-block;
+  font-family: "adelle", serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 2.5rem;
+}
+/* line 119, ../sass/global.scss */
+section > article header h3 strong {
+  font-weight: 700;
+}
+/* line 125, ../sass/global.scss */
+section > article p {
+  font-family: "adobe-caslon-pro", serif;
+  font-size: 1.1rem;
+  line-height: 2.2rem;
+  margin: 2rem 0;
+}
+
+/* line 135, ../sass/global.scss */
+section#home {
+  background-color: #ececec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+/* line 143, ../sass/global.scss */
+section#home > header > h1 {
+  padding-top: 0;
+  color: #afafaf;
+  text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
+  text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
+}
+/* line 149, ../sass/global.scss */
+section#home > header > h2 {
+  color: #5b5b5b;
+}
+
+/* line 156, ../sass/global.scss */
+section#about {
+  background-color: #516eec;
+  border-color: #3c51b0;
+}
+/* line 159, ../sass/global.scss */
+section#about > header > h1 {
+  color: #3c51b0;
+  text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
+  text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
+}
+/* line 169, ../sass/global.scss */
+section#about article > header {
+  color: #3c51b0;
+}
+
+/* line 174, ../sass/global.scss */
+section#blog {
+  background-color: #ec5151;
+  color: #393939;
+  /* LIST BLOG POSTS */
+  border-color: #b03c3c;
+  /* DISPLAY SINGLE POST */
+}
+/* line 177, ../sass/global.scss */
+section#blog > header h1 {
+  color: #b03c3c;
+}
+/* line 185, ../sass/global.scss */
+section#blog > h1 {
+  text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
+  text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
+}
+/* line 190, ../sass/global.scss */
+section#blog > nav {
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 25rem;
+  margin-top: 6rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+/* line 202, ../sass/global.scss */
+section#blog > nav > article {
+  width: 25%;
+  min-width: 20rem;
+  box-sizing: border-box;
+  padding: 0px 1.5rem;
+  position: relative;
+}
+/* line 209, ../sass/global.scss */
+section#blog > nav > article time {
+  display: block;
+  text-align: center;
+  font-family: "clavo", serif;
+  color: #ffffff;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+/* line 218, ../sass/global.scss */
+section#blog > nav > article h3 {
+  text-align: center;
+  font-family: "adelle", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+/* line 226, ../sass/global.scss */
+section#blog > nav > article h3 a {
+  color: #ffffff;
+  text-decoration: none;
+}
+/* line 232, ../sass/global.scss */
+section#blog > nav > article blockquote {
+  font-family: "adobe-caslon-pro", serif;
+  font-weight: 300;
+  font-size: 1.0rem;
+  line-height: 1.8rem;
+  color: #ffffff;
+}
+/* line 241, ../sass/global.scss */
+section#blog > nav > article a.more {
+  width: 100%;
+  font-family: "adobe-caslon-pro", serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  font-variant: small-caps;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  margin-left: -50%;
+}
+/* line 257, ../sass/global.scss */
+section#blog > nav > article a.more:hover {
+  text-decoration: underline;
+}
+/* line 269, ../sass/global.scss */
+section#blog > article header time {
+  float: right;
+  display: inline-block;
+  font-family: "clavo", serif;
+  color: #b03c3c;
+  font-weight: 300;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+/* line 278, ../sass/global.scss */
+section#blog > article header p {
+  float: left;
+  display: inline-block;
+  font-family: "clavo", serif;
+  color: #b03c3c;
+  font-weight: 300;
+  font-size: 1rem;
+  margin: 0;
+}
+/* line 287, ../sass/global.scss */
+section#blog > article header h1 {
+  clear: both;
+  padding: 3rem 0;
+}
+/* line 292, ../sass/global.scss */
+section#blog > article section {
+  border: none;
+}
+
+/* line 299, ../sass/global.scss */
+section#contact {
+  background-color: #4eae61;
+  border-color: #3c864b;
+}
+/* line 302, ../sass/global.scss */
+section#contact > header > h1 {
+  color: #3c864b;
+  text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
+  text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
+}
+/* line 312, ../sass/global.scss */
+section#contact article > header {
+  color: #3c864b;
+}
+/* line 317, ../sass/global.scss */
+section#contact nav {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/* line 323, ../sass/global.scss */
+section#contact nav a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 52px;
+  border: 3px solid #3c864b;
+  line-height: 95px;
+  text-align: center;
+  font-family: "museo-sans", sans-serif;
+  color: #3c864b;
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+/* line 338, ../sass/global.scss */
+section#contact nav a:hover {
+  background-color: #3c864b;
+  color: #ffffff;
+}
+
+/* line 347, ../sass/global.scss */
+section#notfound, footer {
+  background-color: #393939;
+}
+/* line 349, ../sass/global.scss */
+section#notfound > h1, footer > h1 {
+  color: #272727;
+  text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
+  text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
+}
+
+/* line 355, ../sass/global.scss */
+footer {
+  padding: 2rem 0;
+}
+
 @media (min-width: 600px) and (max-width: 800px) {
-  /* line 327, ../sass/global.scss */
-  html, body {
-    height: 100%;
-    font-size: 16px;
-  }
-  /* line 330, ../sass/global.scss */
-  html > section, body > section {
-    border-top: 5px solid #000;
-  }
-
-  /* line 336, ../sass/global.scss */
-  section > h1, footer > h1 {
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 4.2rem;
-    text-align: center;
-    line-height: 6.4rem;
-    padding-top: 2rem;
-  }
-  /* line 345, ../sass/global.scss */
-  section em, footer em {
-    font-style: normal;
-    color: #ffffff;
-  }
-  /* line 351, ../sass/global.scss */
-  section > h2, footer > h2 {
-    font-family: "museo-sans", sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ffffff;
-    text-align: center;
-  }
-
-  /* line 360, ../sass/global.scss */
-  section {
-    width: 100%;
-    min-height: 100%;
-    position: relative;
-    overflow: auto;
-  }
-  /* line 366, ../sass/global.scss */
-  section > article {
-    width: 70%;
-    min-width: 500px;
-    max-width: 50rem;
-    margin: 100px auto;
-    background-color: #ffffff;
-    padding: 50px;
-    color: #393939;
-  }
-  /* line 378, ../sass/global.scss */
-  section > article header {
-    text-align: center;
-  }
-  /* line 381, ../sass/global.scss */
-  section > article header img {
-    vertical-align: middle;
-    border-radius: 75px;
-  }
-  /* line 385, ../sass/global.scss */
-  section > article header h1 {
-    margin: 0 2rem;
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 3.5rem;
-    line-height: 2.5rem;
-  }
-  /* line 392, ../sass/global.scss */
-  section > article header h3 {
-    margin: 0 2rem;
-    display: inline-block;
-    font-family: "adelle", serif;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 2.5rem;
-  }
-  /* line 399, ../sass/global.scss */
-  section > article header h3 strong {
-    font-weight: 700;
-  }
-  /* line 405, ../sass/global.scss */
-  section > article p {
-    font-family: "adobe-caslon-pro", serif;
-    font-size: 1.1rem;
-    line-height: 2.2rem;
-    margin: 2rem 0;
-  }
-
-  /* line 415, ../sass/global.scss */
-  section#home {
-    background-color: #ececec;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: none;
-  }
-  /* line 422, ../sass/global.scss */
-  section#home > h1 {
-    padding-top: 0;
-    color: #afafaf;
-    text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
-    text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
-  }
-  /* line 428, ../sass/global.scss */
-  section#home > h2 {
-    color: #5b5b5b;
-  }
-
-  /* line 434, ../sass/global.scss */
-  section#about {
-    background-color: #516eec;
-    border-color: #3c51b0;
-  }
-  /* line 436, ../sass/global.scss */
-  section#about > h1 {
-    color: #3c51b0;
-    text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
-    text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
-  }
-  /* line 445, ../sass/global.scss */
-  section#about article > header {
-    color: #3c51b0;
-  }
-
-  /* line 451, ../sass/global.scss */
-  section#blog {
-    background-color: #ec5151;
-    color: #393939;
-    /* LIST BLOG POSTS */
-    border-color: #b03c3c;
-    /* DISPLAY SINGLE POST */
-  }
-  /* line 453, ../sass/global.scss */
-  section#blog h1 {
-    color: #b03c3c;
-  }
-  /* line 460, ../sass/global.scss */
-  section#blog > h1 {
-    text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
-    text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
-  }
-  /* line 465, ../sass/global.scss */
-  section#blog > nav {
-    overflow-x: auto;
-    width: 100%;
-    height: 100%;
-    min-height: 25rem;
-    margin-top: 6rem;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-  }
-  /* line 477, ../sass/global.scss */
-  section#blog > nav > article {
-    width: 25%;
-    min-width: 20rem;
-    box-sizing: border-box;
-    padding: 0px 1.5rem;
+  /* line 361, ../sass/global.scss */
+  section > header em {
     position: relative;
   }
-  /* line 484, ../sass/global.scss */
-  section#blog > nav > article time {
-    display: block;
-    text-align: center;
-    font-family: "clavo", serif;
-    color: #ffffff;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-  /* line 493, ../sass/global.scss */
-  section#blog > nav > article h3 {
-    text-align: center;
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-  }
-  /* line 502, ../sass/global.scss */
-  section#blog > nav > article blockquote {
-    font-family: "adobe-caslon-pro", serif;
-    font-weight: 300;
-    font-size: 1.0rem;
-    line-height: 1.8rem;
-    color: #ffffff;
-  }
-  /* line 511, ../sass/global.scss */
-  section#blog > nav > article a {
-    width: 100%;
-    font-family: "adobe-caslon-pro", serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    font-variant: small-caps;
-    color: #ffffff;
-    text-decoration: none;
-    text-align: center;
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    margin-left: -50%;
-  }
-  /* line 527, ../sass/global.scss */
-  section#blog > nav > article a:hover {
-    text-decoration: underline;
-  }
-  /* line 539, ../sass/global.scss */
-  section#blog > article header time {
-    float: right;
-    display: inline-block;
-    font-family: "clavo", serif;
-    color: #b03c3c;
-    font-weight: 300;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  /* line 548, ../sass/global.scss */
-  section#blog > article header p {
-    float: left;
-    display: inline-block;
-    font-family: "clavo", serif;
-    color: #b03c3c;
-    font-weight: 300;
-    font-size: 1rem;
-    margin: 0;
-  }
-  /* line 557, ../sass/global.scss */
-  section#blog > article header h1 {
-    clear: both;
-    padding: 3rem 0;
-  }
-  /* line 562, ../sass/global.scss */
-  section#blog > article section {
-    border: none;
-  }
 
-  /* line 569, ../sass/global.scss */
-  section#contact {
-    background-color: #4eae61;
-    border-color: #3c864b;
-  }
-  /* line 571, ../sass/global.scss */
-  section#contact > h1 {
-    color: #3c864b;
-    text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
-    text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
-  }
-  /* line 580, ../sass/global.scss */
-  section#contact article > header {
-    color: #3c864b;
-  }
-  /* line 585, ../sass/global.scss */
-  section#contact nav {
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  /* line 591, ../sass/global.scss */
-  section#contact nav a {
-    display: block;
-    width: 100px;
-    height: 100px;
-    border-radius: 52px;
-    border: 3px solid #3c864b;
-    line-height: 95px;
-    text-align: center;
-    font-family: "museo-sans", sans-serif;
-    color: #3c864b;
-    font-weight: 300;
-    font-size: 1.2rem;
-    text-decoration: none;
-  }
-  /* line 606, ../sass/global.scss */
-  section#contact nav a:hover {
-    background-color: #3c864b;
-    color: #ffffff;
-  }
-
-  /* line 615, ../sass/global.scss */
-  section#notfound, footer {
-    background-color: #393939;
-  }
-  /* line 617, ../sass/global.scss */
-  section#notfound > h1, footer > h1 {
-    color: #272727;
-    text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
-    text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
-  }
-
-  /* line 623, ../sass/global.scss */
-  footer {
-    padding: 2rem 0;
+  /* line 364, ../sass/global.scss */
+  footer > em {
+    position: relative;
   }
 }
 @media (max-width: 600px) {
-  /* line 631, ../sass/global.scss */
-  html, body {
-    height: 100%;
-    font-size: 16px;
-  }
-  /* line 634, ../sass/global.scss */
-  html > section, body > section {
-    border-top: 5px solid #000;
-  }
-
-  /* line 640, ../sass/global.scss */
-  section > h1, footer > h1 {
-    font-family: "adelle", serif;
-    font-weight: 700;
+  /* line 372, ../sass/global.scss */
+  section > header > h1 {
     font-size: 2.5rem;
-    text-align: center;
     line-height: 2.5rem;
-    padding-top: 2rem;
   }
-  /* line 649, ../sass/global.scss */
-  section em, footer em {
-    font-style: normal;
-    color: #ffffff;
-  }
-  /* line 655, ../sass/global.scss */
-  section > h2, footer > h2 {
-    font-family: "museo-sans", sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ffffff;
-    text-align: center;
+  /* line 376, ../sass/global.scss */
+  section > header em {
+    position: relative;
   }
 
-  /* line 664, ../sass/global.scss */
-  section {
-    width: 100%;
-    min-height: 100%;
-    position: relative;
-    overflow-x: hidden;
+  /* line 381, ../sass/global.scss */
+  footer > h1 {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
   }
-  /* line 670, ../sass/global.scss */
+  /* line 385, ../sass/global.scss */
+  footer > em {
+    position: relative;
+  }
+
+  /* line 390, ../sass/global.scss */
   section > article {
     width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     margin: 20px 0 0;
-    background-color: #ffffff;
     padding: 50px 0px;
-    color: #393939;
   }
-  /* line 682, ../sass/global.scss */
-  section > article header {
-    text-align: center;
-  }
-  /* line 685, ../sass/global.scss */
-  section > article header img {
-    vertical-align: middle;
-    border-radius: 75px;
-  }
-  /* line 689, ../sass/global.scss */
-  section > article header h1 {
-    margin: 0 2rem;
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 3.5rem;
-    line-height: 2.5rem;
-  }
-  /* line 696, ../sass/global.scss */
+  /* line 397, ../sass/global.scss */
   section > article header h3 {
-    margin: 0 2rem;
-    display: inline-block;
-    font-family: "adelle", serif;
-    font-weight: 300;
     font-size: 1.0rem;
     line-height: 1.7rem;
   }
-  /* line 703, ../sass/global.scss */
-  section > article header h3 strong {
-    font-weight: 700;
-  }
-  /* line 709, ../sass/global.scss */
-  section > article p {
-    font-family: "adobe-caslon-pro", serif;
-    font-size: 1.1rem;
-    line-height: 2.2rem;
-    margin: 2rem 0;
-  }
 
-  /* line 719, ../sass/global.scss */
-  section#home {
-    background-color: #ececec;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: none;
-  }
-  /* line 726, ../sass/global.scss */
-  section#home > h1 {
-    padding-top: 0;
-    color: #afafaf;
-    text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
-    text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
-  }
-  /* line 732, ../sass/global.scss */
-  section#home > h2 {
-    color: #5b5b5b;
-  }
-
-  /* line 738, ../sass/global.scss */
-  section#about {
-    background-color: #516eec;
-    border-color: #3c51b0;
-  }
-  /* line 740, ../sass/global.scss */
-  section#about > h1 {
-    color: #3c51b0;
-    text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
-    text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
-  }
-  /* line 749, ../sass/global.scss */
-  section#about article > header {
-    color: #3c51b0;
-  }
-
-  /* line 755, ../sass/global.scss */
+  /* line 405, ../sass/global.scss */
   section#blog {
-    background-color: #ec5151;
-    color: #393939;
     /* LIST BLOG POSTS */
-    border-color: #b03c3c;
     /* DISPLAY SINGLE POST */
   }
-  /* line 757, ../sass/global.scss */
-  section#blog h1 {
-    color: #b03c3c;
-  }
-  /* line 764, ../sass/global.scss */
-  section#blog > h1 {
-    text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
-    text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
-  }
-  /* line 769, ../sass/global.scss */
+  /* line 407, ../sass/global.scss */
   section#blog > nav {
-    overflow-x: auto;
-    width: 100%;
-    height: 100%;
-    min-height: 25rem;
-    margin-top: 6rem;
-    position: relative;
-    display: flex;
     flex-direction: column;
   }
-  /* line 781, ../sass/global.scss */
+  /* line 410, ../sass/global.scss */
   section#blog > nav > article {
+    width: auto;
+    min-width: auto;
+    box-sizing: content-box;
+    padding: auto;
     position: relative;
   }
-  /* line 788, ../sass/global.scss */
-  section#blog > nav > article time {
-    display: block;
-    text-align: center;
-    font-family: "clavo", serif;
-    color: #ffffff;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-  /* line 797, ../sass/global.scss */
+  /* line 417, ../sass/global.scss */
   section#blog > nav > article h3 {
-    text-align: center;
-    font-family: "adelle", serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #ffffff;
     margin-bottom: 3.5rem;
   }
-  /* line 804, ../sass/global.scss */
-  section#blog > nav > article h3 > a {
+  /* line 419, ../sass/global.scss */
+  section#blog > nav > article h3 a {
     display: block;
-    color: #ffffff;
-    text-decoration: none;
+    width: 100%;
   }
-  /* line 811, ../sass/global.scss */
+  /* line 422, ../sass/global.scss */
+  section#blog > nav > article h3 a:hover {
+    background-color: #b03c3c;
+  }
+  /* line 428, ../sass/global.scss */
   section#blog > nav > article blockquote {
     display: none;
   }
-  /* line 821, ../sass/global.scss */
-  section#blog > nav > article a {
+  /* line 432, ../sass/global.scss */
+  section#blog > nav > article a.more {
     display: none;
   }
-  /* line 838, ../sass/global.scss */
-  section#blog > nav > article a:hover {
+  /* line 435, ../sass/global.scss */
+  section#blog > nav > article a.more:hover {
     text-decoration: underline;
   }
-  /* line 850, ../sass/global.scss */
-  section#blog > article header time {
-    float: right;
-    display: inline-block;
-    font-family: "clavo", serif;
-    color: #b03c3c;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 2.2rem;
-    margin-bottom: 1.5rem;
-  }
-  /* line 860, ../sass/global.scss */
-  section#blog > article header p {
-    float: left;
-    display: inline-block;
-    font-family: "clavo", serif;
-    color: #b03c3c;
-    font-weight: 300;
-    font-size: 1rem;
-    margin: 0;
-  }
-  /* line 869, ../sass/global.scss */
+  /* line 445, ../sass/global.scss */
   section#blog > article header h1 {
-    clear: both;
-    padding: 3rem 0;
     font-size: 3rem;
     line-height: 4.5rem;
   }
-  /* line 876, ../sass/global.scss */
-  section#blog > article section {
-    border: none;
-  }
 
-  /* line 883, ../sass/global.scss */
-  section#contact {
-    background-color: #4eae61;
-    border-color: #3c864b;
-  }
-  /* line 885, ../sass/global.scss */
-  section#contact > h1 {
-    color: #3c864b;
-    text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
-    text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
-  }
-  /* line 894, ../sass/global.scss */
-  section#contact article > header {
-    color: #3c864b;
-  }
-  /* line 899, ../sass/global.scss */
+  /* line 454, ../sass/global.scss */
   section#contact nav {
-    margin: 2rem 0;
-    display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
   }
-  /* line 907, ../sass/global.scss */
+  /* line 457, ../sass/global.scss */
   section#contact nav a {
-    display: block;
-    width: 100px;
-    height: 100px;
-    border-radius: 52px;
-    border: 3px solid #3c864b;
     margin-bottom: 1rem;
-    line-height: 95px;
-    text-align: center;
-    font-family: "museo-sans", sans-serif;
-    color: #3c864b;
-    font-weight: 300;
-    font-size: 1.2rem;
-    text-decoration: none;
-  }
-  /* line 923, ../sass/global.scss */
-  section#contact nav a:hover {
-    background-color: #3c864b;
-    color: #ffffff;
   }
 
-  /* line 932, ../sass/global.scss */
-  section#notfound, footer {
-    background-color: #393939;
-  }
-  /* line 934, ../sass/global.scss */
-  section#notfound > h1, footer > h1 {
-    color: #272727;
-    text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
-    text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
-  }
-
-  /* line 940, ../sass/global.scss */
+  /* line 464, ../sass/global.scss */
   footer {
-    padding: 2rem 0;
     height: 20rem;
   }
 }
