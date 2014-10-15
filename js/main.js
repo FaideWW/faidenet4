@@ -11,22 +11,18 @@
 
      */
 
-    var home_parallax = function () {
+    var viewport_height = 0,
+        home_parallax = function () {
         var $document          = $(document),
             $window            = $(window),
             $home_section      = $('section#home'),
             $target_element    = $('section#about'),
             $home_element      = $('section#home>header'),
-            initial_height     = $target_element.offset().top,
             home_goal          = {},
             target_reference   = {},
+            rem                = parseInt($('body').css('font-size')),
             ease_out;
 
-
-        $home_section.css({
-            position: 'absolute',
-            'z-index': 9
-        });
         $home_element.css({
             position: 'absolute',
             top:      '50%',
@@ -42,20 +38,19 @@
                 goal:    0
             },
             'margin-top': {
-                initial: (-$home_element.height() / 2),
-                goal:    5 // accounting for the border-top offset
-            },
-            'padding-top': {
-                suffix:  'rem',
-                initial: 0,
-                goal:    2
+                initial: (-$home_element.height() / 2) + 5,
+                goal:    2 * rem + 5 // section>header>h1 has this padding on it
+                                // ^ accounting for the border-top offset
             }
+//            'padding-top': {
+//                initial: 0,
+//            }
         };
 
         target_reference = {
             determinant: function () { return $document.scrollTop() },
             initial:     0,
-            goal:        initial_height * 0.9
+            goal:        viewport_height - $home_element.height()
         };
 
         /*
@@ -85,42 +80,82 @@
 
 
     $(document).ready(function () {
-        home_parallax();
 
         var $window               = $(window),
             $all_sections         = $('body>section, body>footer'),
+            sections              = [],
             $home_section         = $('section#home'),
             $about_section        = $('section#about'),
             total_document_height = 0,
-            initial_height        = $home_section.height();
+            current_fold          = 0,
+            setHeights            = function () {
+                $all_sections.each(function (i) {
+                    var init_height = (Math.max($(this).height(), viewport_height) | 0); // truncate and integer cast to avoid half-pixel values
+                    $(this).css({
+                        'position': 'fixed',
+                        'z-index': $all_sections.length - i,
+                        'overflow-y': 'hidden',
+                        'height': init_height,
+                        'min-height': 0
+                    });
+                    sections[i] = {
+                        $section: $(this),
+                        height:   init_height,
+                        top:      total_document_height
+                    };
+                    total_document_height += init_height;
+                });
+            };
+
+
+        viewport_height = $(window).height();
+        home_parallax();
+        setHeights();
         console.log($all_sections);
-        $all_sections.each(function (i) {
-            var init_height = $(this).height();
-            total_document_height += init_height;
-            $(this).css({
-                'position': 'fixed',
-                'z-index': $all_sections.length - i,
-                'overflow-y': 'hidden',
-                'height': init_height,
-                'min-height': 0
-            });
-        });
+
+        console.log(sections);
 
         $home_section.css('position', 'fixed');
         $('body').css('height', total_document_height);
 
-
         $window.scroll(function () {
-            $home_section.css({
-                height: initial_height - $window.scrollTop(),
-                'min-height': 0
-            });
+            var scroll = $window.scrollTop();
 
-            $about_section.css({
-                position: 'fixed'
-            });
+            // special case home page
+            if (current_fold === 0) {
+                $home_section.css({
+                    height: viewport_height - scroll,
+                    'min-height': 0
+                });
+            }
+
+
+            // downward scroll behavior
+            if (current_fold < sections.length - 1) {
+                if (scroll >= sections[current_fold + 1].top) {
+                    current_fold += 1;
+                    sections[current_fold].$section.css({
+                        position: 'absolute',
+                        top: sections[current_fold].top
+                    });
+                }
+            }
+
+            if (current_fold > 0) {
+                if (scroll < sections[current_fold].top) {
+                    sections[current_fold].$section.css({
+                        position: 'fixed',
+                        top:      0
+                    });
+                    current_fold -= 1;
+                }
+            }
+        });
+
+        $window.resize(function () {
+            viewport_height = $(this).height();
+            setHeights();
         })
-
 
     });
 }(window.jQuery));
