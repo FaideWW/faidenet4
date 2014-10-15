@@ -82,10 +82,10 @@
     $(document).ready(function () {
 
         var $window               = $(window),
-            $all_sections         = $('body>section, body>footer'),
+            $all_sections         = $('body>section'),
             sections              = [],
             $home_section         = $('section#home'),
-            $about_section        = $('section#about'),
+            $footer               = $('body>footer'),
             total_document_height = 0,
             current_fold          = 0,
             setHeights            = function () {
@@ -106,11 +106,36 @@
                     total_document_height += init_height;
                 });
             };
-
-
         viewport_height = $(window).height();
         home_parallax();
         setHeights();
+
+
+        //the footer is a special case so we handle it separately
+
+        $footer.css({
+            position: 'fixed',
+            bottom:   '0',
+            'z-index':  '-1',
+            'overflow-y': 'hidden',
+            width:    '100%'
+        });
+
+        console.log(sections);
+        // account for the footer offset
+//        sections[sections.length - 1].$section.css({
+//            'margin-bottom': $footer.height()
+//        });
+
+        sections.push({
+            $section: $footer,
+            height:   $footer.height(),
+            top:      total_document_height
+        });
+
+        total_document_height += $footer.outerHeight();
+
+
         console.log($all_sections);
 
         console.log(sections);
