@@ -1,3 +1,20 @@
+/**
+ *
+ * --------------------------------------------
+ *  features that still need to be implemented
+ * --------------------------------------------
+ *
+ * TODO: link fragments navigation
+ * TODO: browser history manipulation
+ * TODO: side navbar (maybe?)
+ * TODO: blog post exit functionality
+ * TODO: blog post entrance and exit animations
+ * TODO: ghost integration
+ * TODO: general code cleanup
+ *
+ */
+
+
 (function ($) {
 
     /*
@@ -95,9 +112,16 @@
                 total_document_height = 0;
                 sections              = [];
                 $all_sections.each(function (i) {
+                    // edge case hack
+                    if ($(this).attr('id') !== 'home') {
+                        $(this).css('height', 'auto');
+                    }
+
                     var init_height = (Math.max($(this).height(), viewport_height) | 0); // truncate and integer cast to avoid half-pixel values
+
                     $(this).css({
-                        'position': 'fixed',
+                        // critical to maintaining functionality when sections change height dynamically (blog posts)
+                        'position': (i <= current_fold) ? 'absolute' : 'fixed',
                         'z-index': $all_sections.length - i,
                         'overflow-y': 'hidden',
                         'height': init_height,
@@ -110,8 +134,9 @@
                     };
                     total_document_height += init_height;
                 });
-                //the footer is a special case so we handle it separately
 
+
+                //the footer is a special case so we handle it separately
                 $footer.css({
                     position: 'fixed',
                     bottom:   '0',
@@ -119,12 +144,6 @@
                     'overflow-y': 'hidden',
                     width:    '100%'
                 });
-
-                console.log(sections);
-                // account for the footer offset
-//        sections[sections.length - 1].$section.css({
-//            'margin-bottom': $footer.height()
-//        });
 
                 sections.push({
                     $section: $footer,
@@ -139,16 +158,15 @@
                 $('body').css('height', total_document_height);
             },
             doScroll = function () {
-                console.log('scrolling');
                 var scroll = $window.scrollTop();
-
+//                console.log('doing scroll');
                 // special case home page
-                if (current_fold === 0) {
-                    $home_section.css({
-                        height: viewport_height - scroll,
-                        'min-height': 0
-                    });
-                }
+                $home_section.css({
+                    height: viewport_height - scroll,
+//                        top: -scroll,
+                    'min-height': 0
+                });
+
 
 
                 // downward scroll behavior
@@ -185,6 +203,28 @@
                 setHeights();
                 doScroll();
             }
+        });
+
+
+
+        // handlebars
+        var src = $('#single-post-template').html(),
+            template = Handlebars.compile(src),
+            context = {
+                tags: ["tag1", "tag2", "tag3"],
+                date: "date",
+                title: "Title",
+                body: "<p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p>"
+            },
+            html = template(context);
+
+        $('a.title, a.more').click(function () {
+            $('#posts').addClass('hidden');
+            $('#post').removeClass('hidden').html(html);
+//            debugger;
+            setHeights();
+            doScroll();
+            return false;
         })
 
     });

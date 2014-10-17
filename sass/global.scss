@@ -26,6 +26,10 @@ html,body {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 section {
   &>header {
     &>h1 {
@@ -281,6 +285,7 @@ section#blog {
         color: $fnet-red-alt;
         font-weight: 300;
         font-size: 1rem;
+        line-height: 1rem;
         margin: 0;
       }
       h1 {
