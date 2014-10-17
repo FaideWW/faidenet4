@@ -57,6 +57,7 @@ section {
 
 }
 footer {
+  width: 100%;
   &>h1 {
     font-family: "adelle", serif;
     font-weight: 700;
@@ -134,7 +135,7 @@ section {
 
 }
 
-section#home {
+section#home-section {
   background-color: $fnet-white;
   display: flex;
   flex-direction: column;
@@ -156,7 +157,7 @@ section#home {
 
 }
 
-section#about {
+section#about-section {
   background-color: $fnet-blue;
   &>header {
     &>h1 {
@@ -174,7 +175,7 @@ section#about {
     }
   }
 }
-section#blog {
+section#blog-section {
   background-color: $fnet-red;
   &>header {
     h1 {
@@ -300,7 +301,7 @@ section#blog {
 
 }
 
-section#contact {
+section#contact-section {
   background-color: $fnet-green;
   &>header {
     &>h1 {
@@ -406,7 +407,7 @@ footer {
     }
 
   }
-  section#blog {
+  section#blog-section {
     /* LIST BLOG POSTS */
     &>nav {
       flex-direction: column;
@@ -454,7 +455,7 @@ footer {
     }
 
   }
-  section#contact {
+  section#contact-section {
     nav {
       flex-direction: column;
       align-items: center;

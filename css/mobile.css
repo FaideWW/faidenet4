@@ -121,7 +121,7 @@ section main p {
 }
 
 /* line 65, ../sass/global.scss */
-section#home {
+section#home-section {
   background-color: #ececec;
   display: flex;
   flex-direction: column;
@@ -129,45 +129,45 @@ section#home {
   justify-content: center;
 }
 /* line 71, ../sass/global.scss */
-section#home h1 {
+section#home-section h1 {
   padding-top: 0;
   color: #afafaf;
   text-shadow: 0 -1px 0 #464646, 0 1px 0 #cfcfcf;
   text-shadow: 0 -1px 0 1px #464646, 0 1px 0 1px #cfcfcf;
 }
 /* line 77, ../sass/global.scss */
-section#home h2 {
+section#home-section h2 {
   color: #5b5b5b;
 }
 
 /* line 82, ../sass/global.scss */
-section#about {
+section#about-section {
   background-color: #516eec;
 }
 /* line 84, ../sass/global.scss */
-section#about h1 {
+section#about-section h1 {
   color: #3c51b0;
   text-shadow: 0 -1px 0 #182046, 0 1px 0 #8a96cf;
   text-shadow: 0 -1px 0 1px #182046, 0 1px 0 1px #8a96cf;
 }
 
 /* line 90, ../sass/global.scss */
-section#blog {
+section#blog-section {
   background-color: #ec5151;
 }
 /* line 92, ../sass/global.scss */
-section#blog h1 {
+section#blog-section h1 {
   color: #b03c3c;
   text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
   text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
 }
 
 /* line 98, ../sass/global.scss */
-section#contact {
+section#contact-section {
   background-color: #4eae61;
 }
 /* line 100, ../sass/global.scss */
-section#contact h1 {
+section#contact-section h1 {
   color: #3c864b;
   text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
   text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;

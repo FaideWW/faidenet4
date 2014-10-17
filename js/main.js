@@ -32,7 +32,7 @@
         home_parallax = function () {
             var $document          = $(document),
                 $window            = $(window),
-                $home_element      = $('section#home>header'),
+                $home_element      = $('section#home-section>header'),
                 home_goal          = {},
                 target_reference   = {},
                 rem                = parseInt($('body').css('font-size')),
@@ -96,15 +96,97 @@
                     doParallax();
                 }
             })
+        },
+        getSectionID = function ($section) {
+            return $section.children('header').children('a').attr('id');
+        },
+        calculateHeaderHeight = function ($header, viewport_height) {
+            $header.data('max-height', viewport_height);
+        },
+        calculateSectionHeights = function ($all_sections, viewport_height, $footer) {
+            // returns an object indexed by section link fragment of all section heights and their "top" values
+            // this is ignorant to changes in the home section's height
+            var sections = {},
+                total    = 0;
+            $all_sections.each(function (i) {
+                var $section = $(this),
+                    id       = getSectionID($section),
+                    section_height;
+                if (id === 'home') {
+                    calculateHeaderHeight($section, viewport_height);
+                    section_height = viewport_height;
+                } else {
+                    section_height = $section.height();
+                }
+                sections[id] = {
+                    $section: $section,
+                    height: section_height,
+                    top: total
+                };
+                total += section_height;
+            });
+
+            if ($footer) {
+                // add the footer if it exists
+                sections.footer = {
+                    $section: $footer,
+                    height:   $footer.outerHeight(),
+                    top:      total
+                };
+
+                total += sections.footer.height;
+            }
+
+            sections.__total = total;
+
+            return sections;
+        },
+        assignSectionHeights = function ($all_sections, section_heights, $footer) {
+            $all_sections.each(function (i) {
+                var $section = $(this),
+                    id       = getSectionID($section);
+
+
+                // initially fix all sections, positioning will come later
+                $section.css({
+                    'position': 'fixed',
+                    'z-index':  $all_sections.length - i,
+                    'overflow-y': 'hidden',
+                    'height': section_heights[id].height,
+                    'min-height': 0
+                });
+            });
+
+            if ($footer) {
+                // handle the footer
+                $footer.css({
+                    position: 'fixed',
+                    bottom:   '0',
+                    'z-index':  '-1',
+                    'overflow-y': 'hidden'
+                });
+            }
+
+            $('body').css('height', section_heights.__total);
+        },
+        resizeHeader     = function ($header, scroll_position) {
+            var max = $header.data('max-height');
+            if (max) {
+                $header.css({
+                    height: Math.max(max - scroll_position, 0)
+                });
+            }
+        },
+        positionSections = function ($all_sections, section_heights, current_fold) {
+
         };
 
 
     $(document).ready(function () {
-
         var $window               = $(window),
             $all_sections         = $('body>section'),
             sections              = [],
-            $home_section         = $('section#home'),
+            $home_section         = $('section#home-section'),
             $footer               = $('body>footer'),
             total_document_height = 0,
             current_fold          = 0,
@@ -113,7 +195,7 @@
                 sections              = [];
                 $all_sections.each(function (i) {
                     // edge case hack
-                    if ($(this).attr('id') !== 'home') {
+                    if ($(this).attr('id') !== 'home-section') {
                         $(this).css('height', 'auto');
                     }
 
@@ -130,8 +212,10 @@
                     sections[i] = {
                         $section: $(this),
                         height:   init_height,
-                        top:      total_document_height
+                        top:      total_document_height,
+                        link_frag: $(this).children('header').children('a').attr('id')
                     };
+                    console.log(sections[i]);
                     total_document_height += init_height;
                 });
 
@@ -141,14 +225,13 @@
                     position: 'fixed',
                     bottom:   '0',
                     'z-index':  '-1',
-                    'overflow-y': 'hidden',
-                    width:    '100%'
+                    'overflow-y': 'hidden'
                 });
 
                 sections.push({
-                    $section: $footer,
-                    height:   $footer.height(),
-                    top:      total_document_height
+                    $section:      $footer,
+                    height:        $footer.height(),
+                    top:           total_document_height
                 });
 
                 total_document_height += $footer.outerHeight();
@@ -162,7 +245,7 @@
 //                console.log('doing scroll');
                 // special case home page
                 $home_section.css({
-                    height: viewport_height - scroll,
+                    height: Math.max(viewport_height - scroll, 0),
 //                        top: -scroll,
                     'min-height': 0
                 });
@@ -177,6 +260,8 @@
                             position: 'absolute',
                             top: sections[current_fold].top
                         });
+                        console.log('history set to #' + sections[current_fold].link_frag);
+                        window.history.replaceState({}, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
                     }
                 }
 
@@ -187,12 +272,55 @@
                             top:      0
                         });
                         current_fold -= 1;
+                        console.log('history set to #' + sections[current_fold].link_frag);
+                        window.history.replaceState({}, sections[current_fold].link_frag, '#' + sections[current_fold].link_frag);
                     }
                 }
+            },
+            goTo = function (s) {
+                current_fold = s;
+                console.log(sections[s].top);
+                $window.scrollTop(sections[s].top);
             };
+
+
         viewport_height = $(window).height();
+
+        var section_heights = calculateSectionHeights($all_sections, viewport_height, $footer);
+
+        assignSectionHeights($all_sections, section_heights, $footer);
+
+
+
+
+
+
+
+
+
+
+
+
+
         home_parallax();
-        setHeights();
+        //setHeights();
+
+
+        // detect url hash
+
+//        if (window.location.hash) {
+//            console.log(window.location.hash);
+//            var s;
+//            for (s = 0; s < sections.length; s += 1) {
+//                if (sections[s].link_frag === window.location.hash.substr(1)) {
+//                    current_fold = s;
+//                    setHeights();
+//                    goTo(s);
+//                }
+//            }
+//        }
+
+
 
         $window.scroll(doScroll);
 
@@ -221,11 +349,16 @@
         $('a.title, a.more').click(function () {
             $('#posts').addClass('hidden');
             $('#post').removeClass('hidden').html(html);
-//            debugger;
+            window.location.hash = '#blog';
+            goTo(2);
             setHeights();
             doScroll();
             return false;
         })
+
+
+
+
 
     });
 }(window.jQuery));
