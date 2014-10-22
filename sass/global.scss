@@ -177,6 +177,10 @@ section#about-section {
 }
 section#blog-section {
   background-color: $fnet-red;
+  color: $fnet-charcoal;
+
+  transition: height 2s;
+
   &>header {
     h1 {
       color: $fnet-red-alt;
@@ -184,7 +188,6 @@ section#blog-section {
     }
   }
 
-  color: $fnet-charcoal;
 
   &>h1 {
     @include inset-shadow($fnet-red-alt-dark, $fnet-red-alt-light);

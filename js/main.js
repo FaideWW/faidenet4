@@ -96,90 +96,90 @@
                     doParallax();
                 }
             })
-        },
-        getSectionID = function ($section) {
-            return $section.children('header').children('a').attr('id');
-        },
-        calculateHeaderHeight = function ($header, viewport_height) {
-            $header.data('max-height', viewport_height);
-        },
-        calculateSectionHeights = function ($all_sections, viewport_height, $footer) {
-            // returns an object indexed by section link fragment of all section heights and their "top" values
-            // this is ignorant to changes in the home section's height
-            var sections = {},
-                total    = 0;
-            $all_sections.each(function (i) {
-                var $section = $(this),
-                    id       = getSectionID($section),
-                    section_height;
-                if (id === 'home') {
-                    calculateHeaderHeight($section, viewport_height);
-                    section_height = viewport_height;
-                } else {
-                    section_height = $section.height();
-                }
-                sections[id] = {
-                    $section: $section,
-                    height: section_height,
-                    top: total
-                };
-                total += section_height;
-            });
-
-            if ($footer) {
-                // add the footer if it exists
-                sections.footer = {
-                    $section: $footer,
-                    height:   $footer.outerHeight(),
-                    top:      total
-                };
-
-                total += sections.footer.height;
-            }
-
-            sections.__total = total;
-
-            return sections;
-        },
-        assignSectionHeights = function ($all_sections, section_heights, $footer) {
-            $all_sections.each(function (i) {
-                var $section = $(this),
-                    id       = getSectionID($section);
-
-
-                // initially fix all sections, positioning will come later
-                $section.css({
-                    'position': 'fixed',
-                    'z-index':  $all_sections.length - i,
-                    'overflow-y': 'hidden',
-                    'height': section_heights[id].height,
-                    'min-height': 0
-                });
-            });
-
-            if ($footer) {
-                // handle the footer
-                $footer.css({
-                    position: 'fixed',
-                    bottom:   '0',
-                    'z-index':  '-1',
-                    'overflow-y': 'hidden'
-                });
-            }
-
-            $('body').css('height', section_heights.__total);
-        },
-        resizeHeader     = function ($header, scroll_position) {
-            var max = $header.data('max-height');
-            if (max) {
-                $header.css({
-                    height: Math.max(max - scroll_position, 0)
-                });
-            }
-        },
-        positionSections = function ($all_sections, section_heights, current_fold) {
-
         };
+//        getSectionID = function ($section) {
+//            return $section.children('header').children('a').attr('id');
+//        },
+//        calculateHeaderHeight = function ($header, viewport_height) {
+//            $header.data('max-height', viewport_height);
+//        },
+//        calculateSectionHeights = function ($all_sections, viewport_height, $footer) {
+//            // returns an object indexed by section link fragment of all section heights and their "top" values
+//            // this is ignorant to changes in the home section's height
+//            var sections = {},
+//                total    = 0;
+//            $all_sections.each(function (i) {
+//                var $section = $(this),
+//                    id       = getSectionID($section),
+//                    section_height;
+//                if (id === 'home') {
+//                    calculateHeaderHeight($section, viewport_height);
+//                    section_height = viewport_height;
+//                } else {
+//                    section_height = $section.height();
+//                }
+//                sections[id] = {
+//                    $section: $section,
+//                    height: section_height,
+//                    top: total
+//                };
+//                total += section_height;
+//            });
+//
+//            if ($footer) {
+//                // add the footer if it exists
+//                sections.footer = {
+//                    $section: $footer,
+//                    height:   $footer.outerHeight(),
+//                    top:      total
+//                };
+//
+//                total += sections.footer.height;
+//            }
+//
+//            sections.__total = total;
+//
+//            return sections;
+//        },
+//        assignSectionHeights = function ($all_sections, section_heights, $footer) {
+//            $all_sections.each(function (i) {
+//                var $section = $(this),
+//                    id       = getSectionID($section);
+//
+//
+//                // initially fix all sections, positioning will come later
+//                $section.css({
+//                    'position': 'fixed',
+//                    'z-index':  $all_sections.length - i,
+//                    'overflow-y': 'hidden',
+//                    'height': section_heights[id].height,
+//                    'min-height': 0
+//                });
+//            });
+//
+//            if ($footer) {
+//                // handle the footer
+//                $footer.css({
+//                    position: 'fixed',
+//                    bottom:   '0',
+//                    'z-index':  '-1',
+//                    'overflow-y': 'hidden'
+//                });
+//            }
+//
+//            $('body').css('height', section_heights.__total);
+//        },
+//        resizeHeader     = function ($header, scroll_position) {
+//            var max = $header.data('max-height');
+//            if (max) {
+//                $header.css({
+//                    height: Math.max(max - scroll_position, 0)
+//                });
+//            }
+//        },
+//        positionSections = function ($all_sections, section_heights, current_fold) {
+//
+//        };
 
 
     $(document).ready(function () {
@@ -192,7 +192,6 @@
             current_fold          = 0,
             setHeights            = function () {
                 total_document_height = 0;
-                sections              = [];
                 $all_sections.each(function (i) {
                     // edge case hack
                     if ($(this).attr('id') !== 'home-section') {
@@ -207,7 +206,8 @@
                         'z-index': $all_sections.length - i,
                         'overflow-y': 'hidden',
                         'height': init_height,
-                        'min-height': 0
+                        'min-height': 0,
+                        'top': (i <= current_fold) ? total_document_height : 0
                     });
                     sections[i] = {
                         $section: $(this),
@@ -251,8 +251,7 @@
                 });
 
 
-
-                // downward scroll behavior
+                    // downward scroll behavior
                 if (current_fold < sections.length - 1) {
                     if (scroll >= sections[current_fold + 1].top) {
                         current_fold += 1;
@@ -263,6 +262,7 @@
                         console.log('history set to #' + sections[current_fold].link_frag);
                         window.history.replaceState({}, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
                     }
+
                 }
 
                 if (current_fold > 0) {
@@ -279,46 +279,30 @@
             },
             goTo = function (s) {
                 current_fold = s;
-                console.log(sections[s].top);
                 $window.scrollTop(sections[s].top);
             };
 
 
         viewport_height = $(window).height();
 
-        var section_heights = calculateSectionHeights($all_sections, viewport_height, $footer);
-
-        assignSectionHeights($all_sections, section_heights, $footer);
-
-
-
-
-
-
-
-
-
-
-
-
 
         home_parallax();
-        //setHeights();
+        setHeights();
 
 
         // detect url hash
 
-//        if (window.location.hash) {
-//            console.log(window.location.hash);
-//            var s;
-//            for (s = 0; s < sections.length; s += 1) {
-//                if (sections[s].link_frag === window.location.hash.substr(1)) {
-//                    current_fold = s;
-//                    setHeights();
-//                    goTo(s);
-//                }
-//            }
-//        }
+        if (window.location.hash) {
+            console.log(window.location.hash);
+            var s;
+            for (s = 0; s < sections.length; s += 1) {
+                if (sections[s].link_frag === window.location.hash.substr(1)) {
+                    current_fold = s;
+                    setHeights();
+                    goTo(s);
+                }
+            }
+        }
 
 
 
@@ -351,7 +335,7 @@
             $('#post').removeClass('hidden').html(html);
             window.location.hash = '#blog';
             goTo(2);
-            setHeights();
+            setHeights(2);
             doScroll();
             return false;
         })
