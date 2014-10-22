@@ -230,7 +230,6 @@ section#about-section article > header {
 section#blog-section {
   background-color: #ec5151;
   color: #393939;
-  transition: height 2s;
   /* LIST BLOG POSTS */
   border-color: #b03c3c;
   /* DISPLAY SINGLE POST */

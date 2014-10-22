@@ -215,7 +215,6 @@
                         top:      total_document_height,
                         link_frag: $(this).children('header').children('a').attr('id')
                     };
-                    console.log(sections[i]);
                     total_document_height += init_height;
                 });
 
@@ -331,8 +330,8 @@
             html = template(context);
 
         $('a.title, a.more').click(function () {
-            $('#posts').addClass('hidden');
-            $('#post').removeClass('hidden').html(html);
+            $('#posts').hide();
+            $('#post').html(html).slideDown();
             window.location.hash = '#blog';
             goTo(2);
             setHeights(2);
