@@ -216,7 +216,6 @@
                         top:      total_document_height,
                         link_frag: $(this).children('header').children('a').attr('id')
                     };
-                    console.log(sections[i]);
                     total_document_height += init_height;
                 });
 
@@ -229,11 +228,11 @@
                     'overflow-y': 'hidden'
                 });
 
-                sections.push({
+                sections[$all_sections.length] = {
                     $section:      $footer,
                     height:        $footer.height(),
                     top:           total_document_height
-                });
+                };
 
                 total_document_height += $footer.outerHeight();
 
@@ -276,6 +275,8 @@
                         });
                         current_fold -= 1;
                         console.log('history set to #' + sections[current_fold].link_frag);
+                        $('body>nav a.active').removeClass('active');
+                        $('body>nav a[data-target=' + current_fold + ']').addClass('active');
                         window.history.replaceState(window.history.state, sections[current_fold].link_frag, '#' + sections[current_fold].link_frag);
                     }
                 }
@@ -365,14 +366,14 @@
                 $('#post').html(html).slideDown({
                     done: function () {
 //                    window.location.hash = '#blog';
-                        goTo(2);
+//                        goTo(2);
                         setHeights(2);
                         doScroll();
                         window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
                     }
                 });
                 //window.location.hash = '#blog';
-                goTo(2);
+                //goTo(2);
                 setHeights(2);
                 doScroll();
             };
