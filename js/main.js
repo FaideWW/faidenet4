@@ -312,10 +312,29 @@
 
         $window.scroll(doScroll);
 
+        var breakpoints = function (w) {
+            if (w < 600) {
+                return 'small';
+            } else if (w >= 600 && w < 800) {
+                return 'medium';
+            } else {
+                return 'large';
+            }
+            },
+            current_breakpoint = breakpoints($(window).width());
+
+
         $window.resize(function () {
-            var new_height = $(this).height();
+            var new_height = $(this).height(),
+                new_breakpoint  = breakpoints($(this).width());
             if (viewport_height !== new_height) {
                 viewport_height = new_height;
+                setHeights();
+                doScroll();
+            }
+            if (current_breakpoint !== new_breakpoint) {
+                current_breakpoint = new_breakpoint;
+                console.log('breakpoint');
                 setHeights();
                 doScroll();
             }
@@ -332,14 +351,17 @@
                 title: "Title",
                 slug: "title",
                 body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mi massa, porttitor sed ultrices nec, porta eget erat. Fusce nisl lorem, commodo non lobortis mattis, molestie ut massa. Etiam eget orci ut sapien tincidunt molestie. Curabitur scelerisque velit sed semper sollicitudin. Aenean suscipit, libero ac ultricies molestie, magna lacus cursus metus, vitae iaculis ante metus vitae leo. Etiam cursus egestas dolor, sed faucibus odio faucibus ut. Cras efficitur felis non purus imperdiet, ac sagittis nisl fermentum. Morbi malesuada justo non turpis mollis convallis. Vestibulum lacinia vehicula elementum. Duis eget arcu nec ante venenatis ultrices vel a dolor. In lacinia odio sed vulputate efficitur. Aenean consectetur laoreet tellus eget tristique. Sed volutpat felis at arcu aliquam, non condimentum quam fringilla. Aenean fringilla ex ante. Quisque vel arcu suscipit, facilisis velit a, tempor orci.</p>" +
-                    "<p>Vivamus id venenatis nunc, vestibulum interdum nisl. Ut elementum, lorem sit amet aliquam cursus, justo sem scelerisque ligula, et euismod eros metus et massa. Maecenas eget augue nisi. Donec faucibus consequat vestibulum. Pellentesque purus arcu, sagittis ut viverra eu, rhoncus in nibh. Maecenas tempus ullamcorper justo a interdum. Nullam libero nisl, lobortis at dolor ac, ullamcorper accumsan nisi. Nam rutrum facilisis ex, ut laoreet justo finibus in.</p>" +
-                    "<p>Nulla suscipit felis in velit consectetur, ac dignissim orci lobortis. Nulla et faucibus diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent condimentum lobortis magna pulvinar bibendum. Mauris dignissim pretium enim. Integer ut mauris quis odio convallis eleifend non eu massa. Vestibulum dignissim ligula sit amet pretium laoreet. Cras vehicula purus a sapien aliquet tristique. Mauris cursus urna ac consectetur fermentum. Vestibulum consequat, libero nec malesuada ultrices, enim arcu pulvinar nunc, vel mollis risus mi ac risus.</p>" +
-                    "<p>Fusce at purus id dolor efficitur egestas vitae a magna. In quis commodo sem, id pulvinar sem. Maecenas dapibus id ligula a volutpat. Suspendisse potenti. Maecenas ac turpis ante. Quisque in metus eu quam bibendum iaculis sit amet et nisi. Cras sodales sagittis metus et convallis. Sed euismod laoreet risus, at accumsan neque gravida varius.</p>" +
-                    "<p>Fusce at tortor a tellus vehicula pellentesque ac eget libero. Maecenas quis vulputate nisi. Aliquam erat volutpat. Phasellus sed libero et mauris posuere rhoncus et vel orci. Vivamus vitae accumsan nibh. Integer sagittis nunc non tristique tincidunt. Praesent a laoreet mauris, sed interdum urna. Aenean viverra leo eu purus lobortis consequat. Morbi bibendum justo nec diam mattis, non euismod libero hendrerit. Pellentesque luctus varius risus, quis pellentesque justo euismod at. Vestibulum tempor nisi in suscipit ornare. Duis in lacus at ipsum placerat tempor ac eget mauris. Nam efficitur sapien dapibus odio efficitur, vitae lacinia ipsum imperdiet. Vivamus eget augue finibus, volutpat metus et, varius arcu. Suspendisse potenti. Aliquam elementum pellentesque sem in laoreet. </p>"
+                "<p>Vivamus id venenatis nunc, vestibulum interdum nisl. Ut elementum, lorem sit amet aliquam cursus, justo sem scelerisque ligula, et euismod eros metus et massa. Maecenas eget augue nisi. Donec faucibus consequat vestibulum. Pellentesque purus arcu, sagittis ut viverra eu, rhoncus in nibh. Maecenas tempus ullamcorper justo a interdum. Nullam libero nisl, lobortis at dolor ac, ullamcorper accumsan nisi. Nam rutrum facilisis ex, ut laoreet justo finibus in.</p>" +
+                "<p>Nulla suscipit felis in velit consectetur, ac dignissim orci lobortis. Nulla et faucibus diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent condimentum lobortis magna pulvinar bibendum. Mauris dignissim pretium enim. Integer ut mauris quis odio convallis eleifend non eu massa. Vestibulum dignissim ligula sit amet pretium laoreet. Cras vehicula purus a sapien aliquet tristique. Mauris cursus urna ac consectetur fermentum. Vestibulum consequat, libero nec malesuada ultrices, enim arcu pulvinar nunc, vel mollis risus mi ac risus.</p>" +
+                "<p>Fusce at purus id dolor efficitur egestas vitae a magna. In quis commodo sem, id pulvinar sem. Maecenas dapibus id ligula a volutpat. Suspendisse potenti. Maecenas ac turpis ante. Quisque in metus eu quam bibendum iaculis sit amet et nisi. Cras sodales sagittis metus et convallis. Sed euismod laoreet risus, at accumsan neque gravida varius.</p>" +
+                "<p>Fusce at tortor a tellus vehicula pellentesque ac eget libero. Maecenas quis vulputate nisi. Aliquam erat volutpat. Phasellus sed libero et mauris posuere rhoncus et vel orci. Vivamus vitae accumsan nibh. Integer sagittis nunc non tristique tincidunt. Praesent a laoreet mauris, sed interdum urna. Aenean viverra leo eu purus lobortis consequat. Morbi bibendum justo nec diam mattis, non euismod libero hendrerit. Pellentesque luctus varius risus, quis pellentesque justo euismod at. Vestibulum tempor nisi in suscipit ornare. Duis in lacus at ipsum placerat tempor ac eget mauris. Nam efficitur sapien dapibus odio efficitur, vitae lacinia ipsum imperdiet. Vivamus eget augue finibus, volutpat metus et, varius arcu. Suspendisse potenti. Aliquam elementum pellentesque sem in laoreet. </p>"
             },
             html = template(context);
 
+        var showPost = false;
+
         $('a.title, a.more').click(function () {
+            showPost = true;
             $('#posts').slideUp();
             $('#post').html(html).slideDown({
                 done: function () {
@@ -350,7 +372,7 @@
                     window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
                 }
             });
-            window.location.hash = '#blog';
+            //window.location.hash = '#blog';
             goTo(2);
             setHeights(2);
             doScroll();
@@ -359,14 +381,16 @@
 
 
         window.onpopstate = function (e) {
-            if (e.state && e.state.action === 'showpost') {
+            console.log(e.state);
+            if (showPost) {
+                showPost = false;
+                $('#posts').slideDown();
                 $('#post').slideUp({
                     done: function () {
                         setHeights(2);
                         doScroll();
                     }
                 });
-                $('#posts').slideDown();
             }
         };
 
