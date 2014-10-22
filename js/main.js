@@ -263,7 +263,7 @@
                         console.log('history set to #' + sections[current_fold].link_frag);
                         $('body>nav a.active').removeClass('active');
                         $('body>nav a[data-target=' + current_fold + ']').addClass('active');
-                        window.history.replaceState({}, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
+                        window.history.replaceState(window.history.state, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
                     }
 
                 }
@@ -276,7 +276,7 @@
                         });
                         current_fold -= 1;
                         console.log('history set to #' + sections[current_fold].link_frag);
-                        window.history.replaceState({}, sections[current_fold].link_frag, '#' + sections[current_fold].link_frag);
+                        window.history.replaceState(window.history.state, sections[current_fold].link_frag, '#' + sections[current_fold].link_frag);
                     }
                 }
             },
@@ -358,32 +358,35 @@
             },
             html = template(context);
 
-        var showPost = false;
+        var showing_post = false,
+            showPost = function () {
+                showing_post = true;
+                $('#posts').slideUp();
+                $('#post').html(html).slideDown({
+                    done: function () {
+//                    window.location.hash = '#blog';
+                        goTo(2);
+                        setHeights(2);
+                        doScroll();
+                        window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
+                    }
+                });
+                //window.location.hash = '#blog';
+                goTo(2);
+                setHeights(2);
+                doScroll();
+            };
 
         $('a.title, a.more').click(function () {
-            showPost = true;
-            $('#posts').slideUp();
-            $('#post').html(html).slideDown({
-                done: function () {
-//                    window.location.hash = '#blog';
-                    goTo(2);
-                    setHeights(2);
-                    doScroll();
-                    window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
-                }
-            });
-            //window.location.hash = '#blog';
-            goTo(2);
-            setHeights(2);
-            doScroll();
+            showPost();
             return false;
         });
 
 
         window.onpopstate = function (e) {
             console.log(e.state);
-            if (showPost) {
-                showPost = false;
+            if (showing_post) {
+                showing_post = false;
                 $('#posts').slideDown();
                 $('#post').slideUp({
                     done: function () {
@@ -391,6 +394,8 @@
                         doScroll();
                     }
                 });
+            } else if (e.state && e.state.action === 'showpost') {
+                showPost();
             }
         };
 
