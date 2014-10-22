@@ -184,6 +184,7 @@
 
     $(document).ready(function () {
         var $window               = $(window),
+            $html                 = $('html'),
             $all_sections         = $('body>section'),
             sections              = [],
             $home_section         = $('section#home-section'),
@@ -260,6 +261,8 @@
                             top: sections[current_fold].top
                         });
                         console.log('history set to #' + sections[current_fold].link_frag);
+                        $('body>nav a.active').removeClass('active');
+                        $('body>nav a[data-target=' + current_fold + ']').addClass('active');
                         window.history.replaceState({}, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
                     }
 
@@ -278,8 +281,9 @@
                 }
             },
             goTo = function (s) {
-                current_fold = s;
-                $window.scrollTop(sections[s].top);
+                //current_fold = s;
+                $html.animate({scrollTop: sections[s].top}, 200, 'swing');
+                //$window.scrollTop(sections[s].top);
             };
 
 
@@ -343,7 +347,7 @@
                     goTo(2);
                     setHeights(2);
                     doScroll();
-                    window.history.pushState({}, context.title, context.slug);
+                    window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
                 }
             });
             window.location.hash = '#blog';
@@ -355,14 +359,16 @@
 
 
         window.onpopstate = function (e) {
-            $('#post').slideUp({
-                done: function () {
-                    setHeights(2);
-                    doScroll();
-                }
-            });
-            $('#posts').slideDown();
-        }
+            if (e.state && e.state.action === 'showpost') {
+                $('#post').slideUp({
+                    done: function () {
+                        setHeights(2);
+                        doScroll();
+                    }
+                });
+                $('#posts').slideDown();
+            }
+        };
 
         $('body>nav a').click(function () {
             $('body>nav a.active').removeClass('active');

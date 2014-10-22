@@ -81,7 +81,8 @@ body>nav {
       width: 100%;
       text-align: center;
       height: 3rem;
-      line-height: 3.5rem;
+      line-height: 3rem;
+      font-family: $title-font;
       font-size: 1.5rem;
 
       a {
@@ -99,6 +100,10 @@ body>nav {
 }
 
 section {
+  &>article, &>nav {
+    padding-left: 3rem;
+    box-sizing: border-box;
+  }
   &>header {
     &>h1 {
       font-family: $title-font;
@@ -252,14 +257,14 @@ section#blog-section {
   &>header {
     h1 {
       color: $fnet-red-alt;
+      @include inset-shadow($fnet-red-alt-dark, $fnet-red-alt-light);
 
     }
   }
-
-
   &>h1 {
-    @include inset-shadow($fnet-red-alt-dark, $fnet-red-alt-light);
   }
+
+
 
   /* LIST BLOG POSTS */
   &>nav {
