@@ -4,11 +4,11 @@
  *  features that still need to be implemented
  * --------------------------------------------
  *
- * TODO: link fragments navigation
- * TODO: browser history manipulation
+ * DONE: link fragments navigation
+ * DONE: browser history manipulation
  * TODO: side navbar (maybe?)
- * TODO: blog post exit functionality
- * TODO: blog post entrance and exit animations
+ * DONE: blog post exit functionality
+ * DONE: blog post entrance and exit animations
  * TODO: ghost integration
  * TODO: general code cleanup
  *
@@ -215,6 +215,7 @@
                         top:      total_document_height,
                         link_frag: $(this).children('header').children('a').attr('id')
                     };
+                    console.log(sections[i]);
                     total_document_height += init_height;
                 });
 
@@ -250,7 +251,7 @@
                 });
 
 
-                    // downward scroll behavior
+                // downward scroll behavior
                 if (current_fold < sections.length - 1) {
                     if (scroll >= sections[current_fold + 1].top) {
                         current_fold += 1;
@@ -325,22 +326,50 @@
                 tags: ["tag1", "tag2", "tag3"],
                 date: "date",
                 title: "Title",
-                body: "<p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p><p>Hello world</p>"
+                slug: "title",
+                body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mi massa, porttitor sed ultrices nec, porta eget erat. Fusce nisl lorem, commodo non lobortis mattis, molestie ut massa. Etiam eget orci ut sapien tincidunt molestie. Curabitur scelerisque velit sed semper sollicitudin. Aenean suscipit, libero ac ultricies molestie, magna lacus cursus metus, vitae iaculis ante metus vitae leo. Etiam cursus egestas dolor, sed faucibus odio faucibus ut. Cras efficitur felis non purus imperdiet, ac sagittis nisl fermentum. Morbi malesuada justo non turpis mollis convallis. Vestibulum lacinia vehicula elementum. Duis eget arcu nec ante venenatis ultrices vel a dolor. In lacinia odio sed vulputate efficitur. Aenean consectetur laoreet tellus eget tristique. Sed volutpat felis at arcu aliquam, non condimentum quam fringilla. Aenean fringilla ex ante. Quisque vel arcu suscipit, facilisis velit a, tempor orci.</p>" +
+                    "<p>Vivamus id venenatis nunc, vestibulum interdum nisl. Ut elementum, lorem sit amet aliquam cursus, justo sem scelerisque ligula, et euismod eros metus et massa. Maecenas eget augue nisi. Donec faucibus consequat vestibulum. Pellentesque purus arcu, sagittis ut viverra eu, rhoncus in nibh. Maecenas tempus ullamcorper justo a interdum. Nullam libero nisl, lobortis at dolor ac, ullamcorper accumsan nisi. Nam rutrum facilisis ex, ut laoreet justo finibus in.</p>" +
+                    "<p>Nulla suscipit felis in velit consectetur, ac dignissim orci lobortis. Nulla et faucibus diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent condimentum lobortis magna pulvinar bibendum. Mauris dignissim pretium enim. Integer ut mauris quis odio convallis eleifend non eu massa. Vestibulum dignissim ligula sit amet pretium laoreet. Cras vehicula purus a sapien aliquet tristique. Mauris cursus urna ac consectetur fermentum. Vestibulum consequat, libero nec malesuada ultrices, enim arcu pulvinar nunc, vel mollis risus mi ac risus.</p>" +
+                    "<p>Fusce at purus id dolor efficitur egestas vitae a magna. In quis commodo sem, id pulvinar sem. Maecenas dapibus id ligula a volutpat. Suspendisse potenti. Maecenas ac turpis ante. Quisque in metus eu quam bibendum iaculis sit amet et nisi. Cras sodales sagittis metus et convallis. Sed euismod laoreet risus, at accumsan neque gravida varius.</p>" +
+                    "<p>Fusce at tortor a tellus vehicula pellentesque ac eget libero. Maecenas quis vulputate nisi. Aliquam erat volutpat. Phasellus sed libero et mauris posuere rhoncus et vel orci. Vivamus vitae accumsan nibh. Integer sagittis nunc non tristique tincidunt. Praesent a laoreet mauris, sed interdum urna. Aenean viverra leo eu purus lobortis consequat. Morbi bibendum justo nec diam mattis, non euismod libero hendrerit. Pellentesque luctus varius risus, quis pellentesque justo euismod at. Vestibulum tempor nisi in suscipit ornare. Duis in lacus at ipsum placerat tempor ac eget mauris. Nam efficitur sapien dapibus odio efficitur, vitae lacinia ipsum imperdiet. Vivamus eget augue finibus, volutpat metus et, varius arcu. Suspendisse potenti. Aliquam elementum pellentesque sem in laoreet. </p>"
             },
             html = template(context);
 
         $('a.title, a.more').click(function () {
-            $('#posts').hide();
-            $('#post').html(html).slideDown();
+            $('#posts').slideUp();
+            $('#post').html(html).slideDown({
+                done: function () {
+//                    window.location.hash = '#blog';
+                    goTo(2);
+                    setHeights(2);
+                    doScroll();
+                    window.history.pushState({}, context.title, context.slug);
+                }
+            });
             window.location.hash = '#blog';
             goTo(2);
             setHeights(2);
             doScroll();
             return false;
-        })
+        });
 
 
+        window.onpopstate = function (e) {
+            $('#post').slideUp({
+                done: function () {
+                    setHeights(2);
+                    doScroll();
+                }
+            });
+            $('#posts').slideDown();
+        }
 
+        $('body>nav a').click(function () {
+            $('body>nav a.active').removeClass('active');
+            $(this).addClass('active');
+            var target = $(this).data('target');
+            goTo(target);
+        });
 
 
     });

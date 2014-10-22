@@ -18,6 +18,37 @@
   }
 }
 
+@font-face {
+  font-family: 'icomoon';
+  src:url('../font/icomoon.eot?pjs6v0');
+  src:url('../font/icomoon.eot?#iefixpjs6v0') format('embedded-opentype'),
+  url('../font/icomoon.woff?pjs6v0') format('woff'),
+  url('../font/icomoon.ttf?pjs6v0') format('truetype'),
+  url('../font/icomoon.svg?pjs6v0#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lab:before {
+  content: "\e600";
+}
+
+
+
 html,body {
   height: 100%;
   font-size: 16px;
@@ -30,10 +61,47 @@ html,body {
   display: none;
 }
 
+body>nav {
+  position: fixed;
+  z-index: 9;
+  width: 3rem;
+  height: 100%;
+  left: 0;
+  background-color: $fnet-charcoal-alt;
+  ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    li {
+      color: $fnet-white;
+      width: 100%;
+      text-align: center;
+      height: 3rem;
+      line-height: 3.5rem;
+      font-size: 1.5rem;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: $fnet-white;
+        text-decoration: none;
+        &.active, &:hover {
+          background-color: $fnet-charcoal;
+        }
+      }
+    }
+  }
+}
+
 section {
   &>header {
     &>h1 {
-      font-family: "adelle", serif;
+      font-family: $title-font;
       font-weight: 700;
       font-size: 4.2rem;
       text-align: center;
@@ -42,7 +110,7 @@ section {
       padding-top: 2rem;
     }
     &>h2 {
-      font-family: "museo-sans", sans-serif;
+      font-family: $subtitle-font;
       font-weight: 300;
       font-size: 1rem;
       color: $white;
@@ -59,7 +127,7 @@ section {
 footer {
   width: 100%;
   &>h1 {
-    font-family: "adelle", serif;
+    font-family: $title-font;
     font-weight: 700;
     font-size: 4.2rem;
     text-align: center;
@@ -68,7 +136,7 @@ footer {
     padding-top: 2rem;
   }
   &>h2 {
-    font-family: "museo-sans", sans-serif;
+    font-family: $subtitle-font;
     font-weight: 300;
     font-size: 1rem;
     color: $white;
@@ -96,7 +164,7 @@ section {
     margin: 100px auto;
     background-color: $white;
     padding: 50px;
-    color: $fnet-charcoal;
+    color: $fnet-charcoal-alt-light;
 
     header {
       text-align: center;
@@ -107,7 +175,7 @@ section {
       }
       h1 {
         margin: 0 2rem;
-        font-family: "adelle", serif;
+        font-family: $title-font;
         font-weight: 700;
         font-size: 3.5rem;
         line-height: 2.5rem;
@@ -115,7 +183,7 @@ section {
       h3 {
         margin: 0 2rem;
         display: inline-block;
-        font-family: "adelle", serif;
+        font-family: $title-font;
         font-weight: 300;
         font-size: 1.4rem;
         line-height: 2.5rem;
@@ -126,8 +194,8 @@ section {
     }
 
     p {
-      font-family: "adobe-caslon-pro", serif;
-      font-size: 1.1rem;
+      font-family: $text-font;
+      font-size: 1.0rem;
       line-height: 2.2rem;
       margin: 2rem 0;
     }
@@ -216,7 +284,7 @@ section#blog-section {
       time {
         display: block;
         text-align: center;
-        font-family: "clavo", serif;
+        font-family: $text-alt-font;
         color: $white;
         font-weight: 300;
         margin-bottom: 1.5rem;
@@ -224,7 +292,7 @@ section#blog-section {
 
       h3 {
         text-align: center;
-        font-family: "adelle", serif;
+        font-family: $title-font;
         font-weight: 700;
         font-size: 1.5rem;
         color: $white;
@@ -237,7 +305,7 @@ section#blog-section {
       }
 
       blockquote {
-        font-family: "adobe-caslon-pro", serif;
+        font-family: $text-font;
         font-weight: 300;
         font-size: 1.0rem;
         line-height: 1.8rem;
@@ -248,7 +316,7 @@ section#blog-section {
       a.more {
         width: 100%;
 
-        font-family: "adobe-caslon-pro", serif;
+        font-family: $text-font;
         font-weight: 300;
         font-size: 0.9rem;
         font-variant: small-caps;
@@ -276,7 +344,7 @@ section#blog-section {
       time {
         float: right;
         display: inline-block;
-        font-family: "clavo", serif;
+        font-family: $text-alt-font;
         color: $fnet-red-alt;
         font-weight: 300;
         font-size: 1rem;
@@ -285,7 +353,7 @@ section#blog-section {
       p {
         float: left;
         display: inline-block;
-        font-family: "clavo", serif;
+        font-family: $text-alt-font;
         color: $fnet-red-alt;
         font-weight: 300;
         font-size: 1rem;
@@ -337,7 +405,7 @@ section#contact-section {
 
       line-height: 95px;
       text-align: center;
-      font-family: "museo-sans", sans-serif;
+      font-family: $subtitle-font;
       color: $fnet-green-alt;
       font-weight: 300;
       font-size: 1.2rem;
