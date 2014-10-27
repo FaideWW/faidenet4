@@ -252,6 +252,7 @@ section#blog-section {
   background-color: $fnet-red;
   color: $fnet-charcoal;
 
+  border-color: $fnet-red-alt;
 
 
   &>header {
@@ -260,8 +261,6 @@ section#blog-section {
       @include inset-shadow($fnet-red-alt-dark, $fnet-red-alt-light);
 
     }
-  }
-  &>h1 {
   }
 
 

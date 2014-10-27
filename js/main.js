@@ -6,8 +6,9 @@
  *
  * DONE: link fragments navigation
  * DONE: browser history manipulation
- * TODO: side navbar (maybe?)
- * DONE: blog post exit functionality
+ * DONE: side navbar (maybe?)
+ * TODO: blog post exit functionality
+ *  -- posts are being closed on replaceState (triggers a popstate)
  * DONE: blog post entrance and exit animations
  * TODO: ghost integration
  * TODO: general code cleanup
@@ -97,90 +98,6 @@
                 }
             })
         };
-//        getSectionID = function ($section) {
-//            return $section.children('header').children('a').attr('id');
-//        },
-//        calculateHeaderHeight = function ($header, viewport_height) {
-//            $header.data('max-height', viewport_height);
-//        },
-//        calculateSectionHeights = function ($all_sections, viewport_height, $footer) {
-//            // returns an object indexed by section link fragment of all section heights and their "top" values
-//            // this is ignorant to changes in the home section's height
-//            var sections = {},
-//                total    = 0;
-//            $all_sections.each(function (i) {
-//                var $section = $(this),
-//                    id       = getSectionID($section),
-//                    section_height;
-//                if (id === 'home') {
-//                    calculateHeaderHeight($section, viewport_height);
-//                    section_height = viewport_height;
-//                } else {
-//                    section_height = $section.height();
-//                }
-//                sections[id] = {
-//                    $section: $section,
-//                    height: section_height,
-//                    top: total
-//                };
-//                total += section_height;
-//            });
-//
-//            if ($footer) {
-//                // add the footer if it exists
-//                sections.footer = {
-//                    $section: $footer,
-//                    height:   $footer.outerHeight(),
-//                    top:      total
-//                };
-//
-//                total += sections.footer.height;
-//            }
-//
-//            sections.__total = total;
-//
-//            return sections;
-//        },
-//        assignSectionHeights = function ($all_sections, section_heights, $footer) {
-//            $all_sections.each(function (i) {
-//                var $section = $(this),
-//                    id       = getSectionID($section);
-//
-//
-//                // initially fix all sections, positioning will come later
-//                $section.css({
-//                    'position': 'fixed',
-//                    'z-index':  $all_sections.length - i,
-//                    'overflow-y': 'hidden',
-//                    'height': section_heights[id].height,
-//                    'min-height': 0
-//                });
-//            });
-//
-//            if ($footer) {
-//                // handle the footer
-//                $footer.css({
-//                    position: 'fixed',
-//                    bottom:   '0',
-//                    'z-index':  '-1',
-//                    'overflow-y': 'hidden'
-//                });
-//            }
-//
-//            $('body').css('height', section_heights.__total);
-//        },
-//        resizeHeader     = function ($header, scroll_position) {
-//            var max = $header.data('max-height');
-//            if (max) {
-//                $header.css({
-//                    height: Math.max(max - scroll_position, 0)
-//                });
-//            }
-//        },
-//        positionSections = function ($all_sections, section_heights, current_fold) {
-//
-//        };
-
 
     $(document).ready(function () {
         var $window               = $(window),
@@ -191,6 +108,9 @@
             $footer               = $('body>footer'),
             total_document_height = 0,
             current_fold          = 0,
+            min_scroll            = -1,
+            max_scroll            = -1,
+            scroll_restrict       = -1,
             setHeights            = function () {
                 total_document_height = 0;
                 $all_sections.each(function (i) {
@@ -243,6 +163,13 @@
             doScroll = function () {
                 var scroll = $window.scrollTop();
 //                console.log('doing scroll');
+
+                // restrict scroll movement
+                if (scroll_restrict >= 0) {
+                    scroll = Math.min(Math.max(min_scroll, scroll), max_scroll);
+                    $window.scrollTop(scroll);
+                }
+
                 // special case home page
                 $home_section.css({
                     height: Math.max(viewport_height - scroll, 0),
@@ -285,6 +212,19 @@
                 //current_fold = s;
                 $html.animate({scrollTop: sections[s].top}, 200, 'swing');
                 //$window.scrollTop(sections[s].top);
+            },
+            restrictScroll = function (fold) {
+                // TODO
+                console.log('restricting');
+                scroll_restrict = fold;
+                min_scroll = sections[fold].top;
+                max_scroll = sections[fold].top + sections[fold].height - viewport_height;
+            },
+            unrestrictScroll = function () {
+                console.log('unrestricting');
+                scroll_restrict = -1;
+                min_scroll = -1;
+                max_scroll = -1;
             };
 
 
@@ -333,12 +273,17 @@
                 setHeights();
                 doScroll();
             }
+            if (scroll_restrict >= 0) {
+                restrictScroll(scroll_restrict);
+                $window.scrollTop(Math.min(Math.max($window.scrollTop(), min_scroll), max_scroll));
+            }
             if (current_breakpoint !== new_breakpoint) {
                 current_breakpoint = new_breakpoint;
                 console.log('breakpoint');
                 setHeights();
                 doScroll();
             }
+
         });
 
 
@@ -361,6 +306,8 @@
 
         var showing_post = false,
             showPost = function () {
+                toggleNav();
+
                 showing_post = true;
                 $('#posts').slideUp();
                 $('#post').html(html).slideDown({
@@ -370,12 +317,29 @@
                         setHeights(2);
                         doScroll();
                         window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
+                        restrictScroll(2);
                     }
                 });
                 //window.location.hash = '#blog';
                 //goTo(2);
                 setHeights(2);
                 doScroll();
+            },
+            hidePost = function () {
+                unrestrictScroll();
+                toggleNav();
+
+                showing_post = false;
+                $('#posts').slideDown();
+                $('#post').slideUp({
+                    done: function () {
+                        setHeights(2);
+                        doScroll();
+                    }
+                });
+            },
+            toggleNav = function () {
+                $('body>nav').animate({width: 'toggle'});
             };
 
         $('a.title, a.more').click(function () {
@@ -385,26 +349,21 @@
 
 
         window.onpopstate = function (e) {
-            console.log(e.state);
+            console.log(e);
             if (showing_post) {
-                showing_post = false;
-                $('#posts').slideDown();
-                $('#post').slideUp({
-                    done: function () {
-                        setHeights(2);
-                        doScroll();
-                    }
-                });
+                hidePost();
             } else if (e.state && e.state.action === 'showpost') {
                 showPost();
             }
         };
 
         $('body>nav a').click(function () {
+            console.log('click: ', window.history.state);
             $('body>nav a.active').removeClass('active');
             $(this).addClass('active');
             var target = $(this).data('target');
             goTo(target);
+            console.log('afternav:', window.history.state);
         });
 
 

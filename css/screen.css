@@ -302,17 +302,18 @@ section#about-section article > header {
 section#blog-section {
   background-color: #ec5151;
   color: #393939;
+  border-color: #b03c3c;
   /* LIST BLOG POSTS */
   border-color: #b03c3c;
   /* DISPLAY SINGLE POST */
 }
-/* line 258, ../sass/global.scss */
+/* line 259, ../sass/global.scss */
 section#blog-section > header h1 {
   color: #b03c3c;
   text-shadow: 0 -1px 0 #461818, 0 1px 0 #cf8a8a;
   text-shadow: 0 -1px 0 1px #461818, 0 1px 0 1px #cf8a8a;
 }
-/* line 270, ../sass/global.scss */
+/* line 269, ../sass/global.scss */
 section#blog-section > nav {
   overflow-x: auto;
   width: 100%;
@@ -324,7 +325,7 @@ section#blog-section > nav {
   flex-direction: row;
   align-items: stretch;
 }
-/* line 282, ../sass/global.scss */
+/* line 281, ../sass/global.scss */
 section#blog-section > nav > article {
   width: 25%;
   min-width: 20rem;
@@ -332,7 +333,7 @@ section#blog-section > nav > article {
   padding: 0px 1.5rem;
   position: relative;
 }
-/* line 289, ../sass/global.scss */
+/* line 288, ../sass/global.scss */
 section#blog-section > nav > article time {
   display: block;
   text-align: center;
@@ -341,7 +342,7 @@ section#blog-section > nav > article time {
   font-weight: 300;
   margin-bottom: 1.5rem;
 }
-/* line 298, ../sass/global.scss */
+/* line 297, ../sass/global.scss */
 section#blog-section > nav > article h3 {
   text-align: center;
   font-family: "adelle", serif;
@@ -350,12 +351,12 @@ section#blog-section > nav > article h3 {
   color: #ffffff;
   margin-bottom: 1.5rem;
 }
-/* line 306, ../sass/global.scss */
+/* line 305, ../sass/global.scss */
 section#blog-section > nav > article h3 a {
   color: #ffffff;
   text-decoration: none;
 }
-/* line 312, ../sass/global.scss */
+/* line 311, ../sass/global.scss */
 section#blog-section > nav > article blockquote {
   font-family: "adobe-caslon-pro", sans-serif;
   font-weight: 300;
@@ -363,7 +364,7 @@ section#blog-section > nav > article blockquote {
   line-height: 1.8rem;
   color: #ffffff;
 }
-/* line 321, ../sass/global.scss */
+/* line 320, ../sass/global.scss */
 section#blog-section > nav > article a.more {
   width: 100%;
   font-family: "adobe-caslon-pro", sans-serif;
@@ -378,11 +379,11 @@ section#blog-section > nav > article a.more {
   left: 50%;
   margin-left: -50%;
 }
-/* line 337, ../sass/global.scss */
+/* line 336, ../sass/global.scss */
 section#blog-section > nav > article a.more:hover {
   text-decoration: underline;
 }
-/* line 349, ../sass/global.scss */
+/* line 348, ../sass/global.scss */
 section#blog-section > article header time {
   float: right;
   display: inline-block;
@@ -392,7 +393,7 @@ section#blog-section > article header time {
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
-/* line 358, ../sass/global.scss */
+/* line 357, ../sass/global.scss */
 section#blog-section > article header p {
   float: left;
   display: inline-block;
@@ -403,39 +404,39 @@ section#blog-section > article header p {
   line-height: 1rem;
   margin: 0;
 }
-/* line 368, ../sass/global.scss */
+/* line 367, ../sass/global.scss */
 section#blog-section > article header h1 {
   clear: both;
   padding: 3rem 0;
 }
-/* line 373, ../sass/global.scss */
+/* line 372, ../sass/global.scss */
 section#blog-section > article section {
   border: none;
 }
 
-/* line 380, ../sass/global.scss */
+/* line 379, ../sass/global.scss */
 section#contact-section {
   background-color: #4eae61;
   border-color: #3c864b;
 }
-/* line 383, ../sass/global.scss */
+/* line 382, ../sass/global.scss */
 section#contact-section > header > h1 {
   color: #3c864b;
   text-shadow: 0 -1px 0 #18351e, 0 1px 0 #8ab693;
   text-shadow: 0 -1px 0 1px #18351e, 0 1px 0 1px #8ab693;
 }
-/* line 393, ../sass/global.scss */
+/* line 392, ../sass/global.scss */
 section#contact-section article > header {
   color: #3c864b;
 }
-/* line 398, ../sass/global.scss */
+/* line 397, ../sass/global.scss */
 section#contact-section nav {
   margin: 2rem 0;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-/* line 404, ../sass/global.scss */
+/* line 403, ../sass/global.scss */
 section#contact-section nav a {
   display: block;
   width: 100px;
@@ -450,66 +451,66 @@ section#contact-section nav a {
   font-size: 1.2rem;
   text-decoration: none;
 }
-/* line 419, ../sass/global.scss */
+/* line 418, ../sass/global.scss */
 section#contact-section nav a:hover {
   background-color: #3c864b;
   color: #ffffff;
 }
 
-/* line 428, ../sass/global.scss */
+/* line 427, ../sass/global.scss */
 section#notfound, footer {
   background-color: #393939;
 }
-/* line 430, ../sass/global.scss */
+/* line 429, ../sass/global.scss */
 section#notfound > h1, footer > h1 {
   color: #272727;
   text-shadow: 0 -1px 0 #0f0f0f, 0 1px 0 #525252;
   text-shadow: 0 -1px 0 1px #0f0f0f, 0 1px 0 1px #525252;
 }
 
-/* line 436, ../sass/global.scss */
+/* line 435, ../sass/global.scss */
 footer {
   padding: 2rem 0;
 }
 
 @media (min-width: 600px) and (max-width: 800px) {
-  /* line 442, ../sass/global.scss */
+  /* line 441, ../sass/global.scss */
   section > header em {
     position: relative;
   }
 
-  /* line 445, ../sass/global.scss */
+  /* line 444, ../sass/global.scss */
   footer > em {
     position: relative;
   }
 }
 @media (max-width: 600px) {
-  /* line 452, ../sass/global.scss */
+  /* line 451, ../sass/global.scss */
   body > nav {
     display: none;
   }
 
-  /* line 457, ../sass/global.scss */
+  /* line 456, ../sass/global.scss */
   section > header > h1 {
     font-size: 2.5rem;
     line-height: 2.5rem;
   }
-  /* line 461, ../sass/global.scss */
+  /* line 460, ../sass/global.scss */
   section > header em {
     position: relative;
   }
 
-  /* line 466, ../sass/global.scss */
+  /* line 465, ../sass/global.scss */
   footer > h1 {
     font-size: 2.5rem;
     line-height: 2.5rem;
   }
-  /* line 470, ../sass/global.scss */
+  /* line 469, ../sass/global.scss */
   footer > em {
     position: relative;
   }
 
-  /* line 475, ../sass/global.scss */
+  /* line 474, ../sass/global.scss */
   section > article {
     width: 100%;
     min-width: 100%;
@@ -517,22 +518,22 @@ footer {
     margin: 20px 0 0;
     padding: 50px 0px;
   }
-  /* line 482, ../sass/global.scss */
+  /* line 481, ../sass/global.scss */
   section > article header h3 {
     font-size: 1.0rem;
     line-height: 1.7rem;
   }
 
-  /* line 490, ../sass/global.scss */
+  /* line 489, ../sass/global.scss */
   section#blog-section {
     /* LIST BLOG POSTS */
     /* DISPLAY SINGLE POST */
   }
-  /* line 492, ../sass/global.scss */
+  /* line 491, ../sass/global.scss */
   section#blog-section > nav {
     flex-direction: column;
   }
-  /* line 495, ../sass/global.scss */
+  /* line 494, ../sass/global.scss */
   section#blog-section > nav > article {
     width: auto;
     min-width: auto;
@@ -540,48 +541,48 @@ footer {
     padding: auto;
     position: relative;
   }
-  /* line 502, ../sass/global.scss */
+  /* line 501, ../sass/global.scss */
   section#blog-section > nav > article h3 {
     margin-bottom: 3.5rem;
   }
-  /* line 504, ../sass/global.scss */
+  /* line 503, ../sass/global.scss */
   section#blog-section > nav > article h3 a {
     display: block;
     width: 100%;
   }
-  /* line 507, ../sass/global.scss */
+  /* line 506, ../sass/global.scss */
   section#blog-section > nav > article h3 a:hover {
     background-color: #b03c3c;
   }
-  /* line 513, ../sass/global.scss */
+  /* line 512, ../sass/global.scss */
   section#blog-section > nav > article blockquote {
     display: none;
   }
-  /* line 517, ../sass/global.scss */
+  /* line 516, ../sass/global.scss */
   section#blog-section > nav > article a.more {
     display: none;
   }
-  /* line 520, ../sass/global.scss */
+  /* line 519, ../sass/global.scss */
   section#blog-section > nav > article a.more:hover {
     text-decoration: underline;
   }
-  /* line 530, ../sass/global.scss */
+  /* line 529, ../sass/global.scss */
   section#blog-section > article header h1 {
     font-size: 3rem;
     line-height: 4.5rem;
   }
 
-  /* line 539, ../sass/global.scss */
+  /* line 538, ../sass/global.scss */
   section#contact-section nav {
     flex-direction: column;
     align-items: center;
   }
-  /* line 542, ../sass/global.scss */
+  /* line 541, ../sass/global.scss */
   section#contact-section nav a {
     margin-bottom: 1rem;
   }
 
-  /* line 549, ../sass/global.scss */
+  /* line 548, ../sass/global.scss */
   footer {
     height: 20rem;
   }
