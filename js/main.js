@@ -7,9 +7,10 @@
  * DONE: link fragments navigation
  * DONE: browser history manipulation
  * DONE: side navbar (maybe?)
- * TODO: blog post exit functionality
- *  -- posts are being closed on replaceState (triggers a popstate)
+ * DONE: blog post exit functionality
  * DONE: blog post entrance and exit animations
+ * DONE: post close button/exit strategy
+ * TODO: alien integration
  * TODO: ghost integration
  * TODO: general code cleanup
  *
@@ -102,15 +103,14 @@
     $(document).ready(function () {
         var $window               = $(window),
             $html                 = $('html'),
+            $nav                  = $('body>nav'),
             $all_sections         = $('body>section'),
             sections              = [],
             $home_section         = $('section#home-section'),
             $footer               = $('body>footer'),
             total_document_height = 0,
+            nav_hidden            = false,
             current_fold          = 0,
-            min_scroll            = -1,
-            max_scroll            = -1,
-            scroll_restrict       = -1,
             setHeights            = function () {
                 total_document_height = 0;
                 $all_sections.each(function (i) {
@@ -164,18 +164,18 @@
                 var scroll = $window.scrollTop();
 //                console.log('doing scroll');
 
-                // restrict scroll movement
-                if (scroll_restrict >= 0) {
-                    scroll = Math.min(Math.max(min_scroll, scroll), max_scroll);
-                    $window.scrollTop(scroll);
-                }
-
                 // special case home page
                 $home_section.css({
                     height: Math.max(viewport_height - scroll, 0),
 //                        top: -scroll,
                     'min-height': 0
                 });
+
+                if (viewport_height - scroll < 15 && !showing_post) {
+                    showNav();
+                } else if (viewport_height - scroll > 15 || showing_post) {
+                    hideNav();
+                }
 
 
                 // downward scroll behavior
@@ -186,10 +186,11 @@
                             position: 'absolute',
                             top: sections[current_fold].top
                         });
-                        console.log('history set to #' + sections[current_fold].link_frag);
                         $('body>nav a.active').removeClass('active');
                         $('body>nav a[data-target=' + current_fold + ']').addClass('active');
-                        window.history.replaceState(window.history.state, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
+                        if (!showing_post) {
+                            window.history.replaceState(window.history.state, sections[current_fold].link_frag ,'#' + sections[current_fold].link_frag);
+                        }
                     }
 
                 }
@@ -201,30 +202,19 @@
                             top:      0
                         });
                         current_fold -= 1;
-                        console.log('history set to #' + sections[current_fold].link_frag);
                         $('body>nav a.active').removeClass('active');
                         $('body>nav a[data-target=' + current_fold + ']').addClass('active');
-                        window.history.replaceState(window.history.state, sections[current_fold].link_frag, '#' + sections[current_fold].link_frag);
+                        if (!showing_post) {
+                            window.history.replaceState(window.history.state, sections[current_fold].link_frag, '#' + sections[current_fold].link_frag);
+                        }
                     }
                 }
+
             },
             goTo = function (s) {
                 //current_fold = s;
                 $html.animate({scrollTop: sections[s].top}, 200, 'swing');
                 //$window.scrollTop(sections[s].top);
-            },
-            restrictScroll = function (fold) {
-                // TODO
-                console.log('restricting');
-                scroll_restrict = fold;
-                min_scroll = sections[fold].top;
-                max_scroll = sections[fold].top + sections[fold].height - viewport_height;
-            },
-            unrestrictScroll = function () {
-                console.log('unrestricting');
-                scroll_restrict = -1;
-                min_scroll = -1;
-                max_scroll = -1;
             };
 
 
@@ -254,13 +244,13 @@
         $window.scroll(doScroll);
 
         var breakpoints = function (w) {
-            if (w < 600) {
-                return 'small';
-            } else if (w >= 600 && w < 800) {
-                return 'medium';
-            } else {
-                return 'large';
-            }
+                if (w < 600) {
+                    return 'small';
+                } else if (w >= 600 && w < 800) {
+                    return 'medium';
+                } else {
+                    return 'large';
+                }
             },
             current_breakpoint = breakpoints($(window).width());
 
@@ -273,10 +263,9 @@
                 setHeights();
                 doScroll();
             }
-            if (scroll_restrict >= 0) {
-                restrictScroll(scroll_restrict);
-                $window.scrollTop(Math.min(Math.max($window.scrollTop(), min_scroll), max_scroll));
-            }
+
+
+
             if (current_breakpoint !== new_breakpoint) {
                 current_breakpoint = new_breakpoint;
                 console.log('breakpoint');
@@ -302,23 +291,41 @@
                 "<p>Fusce at purus id dolor efficitur egestas vitae a magna. In quis commodo sem, id pulvinar sem. Maecenas dapibus id ligula a volutpat. Suspendisse potenti. Maecenas ac turpis ante. Quisque in metus eu quam bibendum iaculis sit amet et nisi. Cras sodales sagittis metus et convallis. Sed euismod laoreet risus, at accumsan neque gravida varius.</p>" +
                 "<p>Fusce at tortor a tellus vehicula pellentesque ac eget libero. Maecenas quis vulputate nisi. Aliquam erat volutpat. Phasellus sed libero et mauris posuere rhoncus et vel orci. Vivamus vitae accumsan nibh. Integer sagittis nunc non tristique tincidunt. Praesent a laoreet mauris, sed interdum urna. Aenean viverra leo eu purus lobortis consequat. Morbi bibendum justo nec diam mattis, non euismod libero hendrerit. Pellentesque luctus varius risus, quis pellentesque justo euismod at. Vestibulum tempor nisi in suscipit ornare. Duis in lacus at ipsum placerat tempor ac eget mauris. Nam efficitur sapien dapibus odio efficitur, vitae lacinia ipsum imperdiet. Vivamus eget augue finibus, volutpat metus et, varius arcu. Suspendisse potenti. Aliquam elementum pellentesque sem in laoreet. </p>"
             },
+            $post = $('#post'),
             html = template(context);
 
         var showing_post = false,
             showPost = function () {
-                toggleNav();
-
+                var $posts = $('#posts'),
+                    $close;
                 showing_post = true;
-                $('#posts').slideUp();
-                $('#post').html(html).slideDown({
+                //$posts.parent().css({
+                //    'height': 'auto'
+                //});
+                $posts.slideUp();
+                $post.html(html).slideDown({
                     done: function () {
 //                    window.location.hash = '#blog';
 //                        goTo(2);
                         setHeights(2);
                         doScroll();
-                        window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
-                        restrictScroll(2);
+
+                        $close.click(function () {
+                            //console.log('click');
+                            //hidePost();
+                            window.history.back();
+                            return false;
+                        }).animate({
+                            'margin-top': 0
+                        }, 200);
                     }
+                });
+
+
+
+                $close   = $('a#close-post');
+                $close.css({
+                    'margin-top': '1.5rem'
                 });
                 //window.location.hash = '#blog';
                 //goTo(2);
@@ -326,8 +333,7 @@
                 doScroll();
             },
             hidePost = function () {
-                unrestrictScroll();
-                toggleNav();
+                showNav();
 
                 showing_post = false;
                 $('#posts').slideDown();
@@ -338,18 +344,31 @@
                     }
                 });
             },
-            toggleNav = function () {
-                $('body>nav').animate({width: 'toggle'});
+            hideNav   = function (instant) {
+                if (!nav_hidden) {
+                    nav_hidden = true;
+                    toggleNav(instant);
+                }
+            },
+            showNav   = function (instant) {
+                if (nav_hidden) {
+                    nav_hidden = false;
+                    toggleNav(instant);
+                }
+            },
+            toggleNav = function (instant) {
+                $nav.animate({width: 'toggle'}, (instant ? 0 : 200));
             };
 
         $('a.title, a.more').click(function () {
+            // this can't be in showPost because showPost can be triggered from popstate
+            window.history.pushState({action: 'showpost'}, context.title, '#' + context.slug);
             showPost();
             return false;
         });
 
 
         window.onpopstate = function (e) {
-            console.log(e);
             if (showing_post) {
                 hidePost();
             } else if (e.state && e.state.action === 'showpost') {
@@ -358,14 +377,13 @@
         };
 
         $('body>nav a').click(function () {
-            console.log('click: ', window.history.state);
             $('body>nav a.active').removeClass('active');
             $(this).addClass('active');
             var target = $(this).data('target');
             goTo(target);
-            console.log('afternav:', window.history.state);
         });
 
+        hideNav(true);
 
     });
 }(window.jQuery));

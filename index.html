@@ -62,6 +62,7 @@
         <h1>faide.net</h1>
         <h2>the personal website of Michael Ko</h2>
     </header>
+    <canvas id="homeLab"></canvas>
 </section>
 <section id="about-section">
     <header>
@@ -185,22 +186,26 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
 <script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="bower_components/requirejs/require.js" data-main="js/game/lab.js"></script>
 <script src="js/main.js"></script>
 
 
 <script id="single-post-template" type="text/x-handlebars-template">
+    <aside>
+        <a href="#" id="close-post">Back</a>
+    </aside>
+    <header>
+        <p>in
+            {{#each tags}}
+            {{this}},
+            {{/each}}</p>
+        <time>{{date}}</time>
+        <h1>{{title}}</h1>
+    </header>
 
-        <header>
-            <p>in
-                {{#each tags}}
-                {{this}},
-                {{/each}}</p>
-            <time>{{date}}</time>
-            <h1>{{title}}</h1>
-        </header>
-        <section>
-            {{{body}}}
-        </section>
+    <section>
+        {{{body}}}
+    </section>
 
 </script>
 
